@@ -1,0 +1,353 @@
+.header__item {
+    width: 20%;
+}
+
+.user-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 auto;
+}
+
+.user-form__input {
+    width: 100%;
+    height: 34px;
+    box-sizing: border-box;
+    border: 0.5px solid #c6c6c6;
+    font-size: 11px;
+    background-color: white;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding-left: 10px;
+    appearance: none;
+    border-right: none;
+}
+
+.user-form__input::placeholder {
+    color: #afafaf;
+}
+
+.user-form__search-submit {
+    width: 33px;
+    height: 34px;
+    border: 0.5px solid #c6c6c6;
+    border-right: none;
+    border-left: none;
+    background-color: white;
+    text-align: center;
+}
+
+.user-form__reset-link {
+    width: 45px;
+    height: 27.5px;
+    border: 0.5px solid #c6c6c6;
+    background-color: white;
+    text-decoration: none;
+    padding-top: 5.5px;
+    text-align: center;
+    text-shadow: none;
+    color: #a5a5a5;
+    font-size: 14px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.fas.fa-search {
+    color: #a5a5a5;
+}
+
+.message {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.9s forwards;
+}
+
+.message--success {
+    background-color: #0a8a0ff2;
+}
+
+.message--error {
+    background-color: #ed291bf5;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.user__content {
+    max-width: 1400px;
+    height: 100%;
+    padding: 2% 6%;
+}
+
+.user__inner {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabs {
+    max-width: 100%;
+}
+
+.tab-titles {
+    width: 100%;
+    display: flex;
+    margin: 20px 0px 20px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.admin-form {
+    margin: 0 5px 0 auto;
+}
+
+.admin-form__submit {
+    background: linear-gradient(to bottom, #2b5ba0, #1c4480);
+    border: none;
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    padding: 7px 13px 8px;
+    font-size: 11px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form__submit:hover {
+    background: linear-gradient(to top, #2f5fa3, #1c4480);
+    box-shadow: 2px 2px 8px #aeb2cb, 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tab-link {
+    margin-right: 20px;
+    color: #474747;
+    line-height: 230%;
+    cursor: pointer;
+}
+
+.tab-link.active {
+    border-bottom: 2px solid #2d4dc0;
+    color: rgb(81, 103, 183);
+}
+
+.tab__content {
+    width: 90%;
+}
+
+.user__table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e6ed;
+    border-radius: 6px;
+    color: #474747;
+}
+
+.user__header {
+    padding: 14px 22px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #eef1f3;
+}
+
+.user__row {
+    border-bottom: 1px solid #e5e6ea;
+}
+
+.user__row:last-child {
+    border-bottom: none;
+}
+
+.user__item {
+    padding: 13px 15px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgb(254, 254, 255);
+    font-size: 15px;
+}
+
+.user__item:first-child,
+.user__header:first-child {
+    padding-left: 30px;
+}
+
+.user__item:last-child,
+.user__header:last-child {
+    padding-right: 30px;
+}
+
+.user__item-items {
+    display: flex;
+    justify-content: space-around;
+}
+
+.fas.fa-edit {
+    color: #5b5b5b;
+}
+
+.fas.fa-trash-alt {
+    color: #5b5b5b;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(35, 35, 35, 0.399);
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal.open {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.455);
+    z-index: 9999;
+}
+
+.modal:target {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.453);
+}
+
+.modal__inner {
+    position: relative;
+    margin: 12% auto;
+    width: 400px;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    padding: 30px 40px 130px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.modal__close {
+    position: absolute;
+    text-decoration: none;
+    font-size: 19px;
+    top: 16px;
+    right: 25px;
+    color: #4d4d4d;
+    z-index: 100;
+    font-weight: bold;
+}
+
+.modal__label {
+    display: inline-block;
+    margin-top: 30px;
+    color: #4d4d4d;
+}
+
+.modal__input {
+    display: block;
+    width: 290px;
+    border: 1px solid #bebebe;
+    border-radius: 3px;
+    padding: 8px 10px;
+    margin: 6px 0 5px 0;
+    color: #4d4d4d;
+    box-shadow: 1px 1px 1px #9a9a9a;
+    background-color: #fcfcfc;
+}
+
+.modal__radio {
+    margin: 40px 20px 5px 3px;
+}
+
+.modal__submit {
+    position: absolute;
+    bottom: 10%;
+    right: 159px;
+    padding: 7px 15px;
+    width: 80px;
+    background-color: rgb(47, 95, 163);
+    border: none;
+    color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #3d86da, #2f5fa3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-weight: bold;
+}
+
+.modal__delete-submit {
+    border: none;
+    background-color: transparent;
+    margin-left: 15px;
+}
+
+.modal__submit:hover {
+    background-color: #1d66f9;
+}
+
+.modal__submit:active,
+.modal__delete-submit:active {
+    transform: scale(0.9);
+}
+
+.error-message {
+    color: #ff2020;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(min-width: 769px) and (max-width: 1000px) {
+    .header__item {
+        width: 30%;
+    }
+}
+
+@media(min-width: 481px) and (max-width: 768px) {
+    .header__item {
+        width: 40%;
+    }
+}

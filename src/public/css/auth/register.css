@@ -10,11 +10,11 @@
     margin-top: 110px;
     text-align: left;
     background-color: rgb(48, 93, 255);
-    padding: 18px 25px;
+    padding: 20px 25px;
     color: white;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    box-shadow: 3px 4px 5px #979797;
+    box-shadow: 3px 4px 5px #686868;
 }
 
 .form__inner {
@@ -26,16 +26,16 @@
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     border: 1px solid #ddd;
-    box-shadow: 3px 2px 5px #a1a1a1;
+    box-shadow: 3px 4px 5px #8b8b8b;
 }
 
 .form__group {
-    margin: 10px 0px;
-    align-items: baseline;
+    display: flex;
+    align-items: center;
 }
 
 .form__label {
-    margin: 3px 3px 10px 2px;
+    margin: 6px 15px 10px 17px;
     font-size: 23px;
     color: rgb(65, 65, 65);
 }
@@ -49,7 +49,7 @@
 }
 
 .form__button {
-    margin: 8px 0px 2px 250px;
+    margin: 8px 0px 2px 255px;
     background-color: rgb(48, 93, 255);
     color: white;
     border: none;
@@ -67,4 +67,29 @@
 .error {
     margin-top: -8px;
     color: rgb(255, 22, 22);
+}
+
+@media (max-width: 480px) {
+    .form__heading {
+        width: 270px;
+        margin-top: 70px;
+    }
+
+    .form__inner {
+        margin: 0 auto;
+        width: 288px;
+    }
+
+    .form__label {
+        margin: 6px 4px 10px 7px;
+        font-size: 22px;
+    }
+
+    .form__input {
+        width: 260px;
+    }
+
+    .form__button {
+        margin: 10px 0px 5px 215px;
+    }
 }

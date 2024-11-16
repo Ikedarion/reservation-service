@@ -6,12 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "fruitcake/laravel-cors": "^2.0",
+        "doctrine/dbal": "^3.0",
+        "facade/ignition": "^2.5",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/fortify": "^1.19",
-        "laravel/framework": "^8.75",
+        "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "symfony/http-client": "^6.2",
+        "symfony/mailer": "^6.1",
+        "symfony/mailgun-mailer": "^6.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -59,7 +64,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-        "php": "8.3.12"
+        "php": "8.2.25"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

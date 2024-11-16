@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Imports\RestaurantsImport;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -41,4 +43,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function restaurant()
+    {
+        return $this->hasOne(Restaurant::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function favoriteRestaurants()
+    {
+        return $this->belongsToMany(Restaurant::class, 'favorites');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
+
+
+    public function scopeKeywordSearch($query,$keyword) {
+        if(!empty($keyword)) {
+            $query->where('name', 'like' ,'%' . $keyword . '%')
+                ->orWhere('email','like','%' . $keyword . '%')
+                ->orWhereHas('restaurant',function ($query) use ($keyword) {
+                    $query->where('name','like' ,'%' . $keyword . '%');
+                });
+        }
+        return $query;
+    }
 }

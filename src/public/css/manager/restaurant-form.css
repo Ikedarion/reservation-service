@@ -1,0 +1,353 @@
+* {
+    box-sizing: border-box;
+}
+
+.error-message {
+    font-size: 15px;
+    color: #ff1e1e;
+}
+
+.manager__content {
+    max-width: 1400px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurant__inner {
+    width: 100%;
+    height: 100%;
+    padding: 20px 6% 1% 6%;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    /* 半透明の背景 */
+    z-index: 1000;
+}
+
+/* モーダル内のコンテンツ */
+.modal__inner {
+    background-color: transparent;
+    padding: 20px 30px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 14% auto;
+    width: 240px;
+    height: 100px;
+    position: relative;
+}
+
+.restaurant__header {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.create-button {
+    background: linear-gradient(45deg, #0d66e3, #0850a7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 32px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    position: absolute;
+    top: 90px;
+    left: 16px;
+    white-space: nowrap;
+}
+
+.create-button:hover {
+    background: linear-gradient(45deg, #0850a7, #0d66e3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.create-button:active {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.create-button:focus {
+    outline: none;
+}
+
+.restaurant__grope {
+    display: flex;
+    gap: 30px;
+}
+
+.restaurant__header {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.restaurant__header.open {
+    display: block;
+}
+
+.restaurant__create-form {
+    z-index: 10;
+    width: 50%;
+    min-width: 350px;
+    max-width: 500px;
+    margin: 15px auto 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.restaurant__create-form.open {
+    display: block;
+    margin: 0 auto;
+}
+
+.close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #565656;
+}
+
+.create-form {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 50px 35px 60px;
+    text-align: left;
+    border-radius: 10px;
+    position: relative;
+    margin: 0;
+}
+
+.create-form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.create-form__label {
+    display: block;
+    font-size: 13px;
+}
+
+.create-form__image {
+    height: 30px;
+    width: 100%;
+    margin-right: 16px;
+}
+
+.create-form__input,
+.create-form__select,
+.create-form__text,
+.create-form__textarea {
+    padding: 0 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #bebebe;
+    border-radius: 3px;
+}
+
+.create-form__input {
+    height: 25px;
+    width: 97%;
+}
+
+.create-form__select {
+    height: 30px;
+    width: 97%;
+}
+
+.create-form__text {
+    height: 25px;
+    width: 97%;
+}
+
+.create-form__textarea {
+    height: 110px;
+    width: 97%;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.create-form__submit {
+    width: 100px;
+    padding: 6px;
+    position: absolute;
+    bottom: 32px;
+    right: 44px;
+    background-color: rgb(47, 95, 163);
+    border: none;
+    color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #3d86da, #2f5fa3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-form__submit:hover {
+    background: linear-gradient(to bottom, #2e75b4, #2b4f84);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.preview__submit {
+    width: 120px;
+    padding: 6px;
+    font-size: 13px;
+    position: absolute;
+    bottom: 32px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #bebebe;
+    color: #3d3d3d;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+
+
+
+
+.preview__content {
+    width: 50%;
+    margin: 0px;
+    padding: 0;
+    position: static;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.close-preview {
+    text-decoration: underline;
+    font-size: 13px;
+    color: #2f2f2f;
+}
+
+.card__inner {
+    width: 100%;
+    min-width: 380px;
+    max-width: 530px;
+    border-radius: 1px;
+    height: auto;
+    margin-top: 5px;
+    text-align: left;
+    position: relative;
+    padding-bottom: 0px;
+    box-shadow: 1px 1px 3px #c1c1c1;
+    background-color: #f4f4f4;
+}
+
+.card__image {
+    position: relative;
+    width: 100%;
+    padding-top: 70%;
+    overflow: hidden;
+}
+
+.card__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card__content {
+    width: 100%;
+    padding: 0 11px 15px 11px;
+    text-align: left;
+}
+
+.header__item {
+    display: flex;
+    margin: 0 auto -10px 5px;
+    align-items: center;
+}
+
+.home__link {
+    width: 27px;
+    height: 27px;
+    padding-top: 2px;
+    margin-right: 5px;
+    text-decoration: none;
+    background-color: white;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 1.5px 1.5px 3px #6b6b6b;
+    font-size: 16px;
+    color: #000;
+}
+
+.card__heading {
+    font-size: 19px;
+    font-weight: bold;
+    padding: 0;
+    color: #333434;
+    letter-spacing: 1px;
+}
+
+.card__tag {
+    display: flex;
+    margin-top: 0px;
+}
+
+.tag-p {
+    font-size: 12px;
+    margin: 8px 1% -5px 0%;
+    color: #393939;
+}
+
+.card__address-p {
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
+    color: #2c2c2c;
+    margin-bottom: -5px;
+}
+
+.card__description-p {
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
+    color: #2c2c2c;
+}
+
+.preview__submit {
+    margin-top: 20px;
+}
+
+
+@media(min-width: 481px) and (max-width: 768px) {
+    .tag-p {
+        font-size: 11px;
+    }
+
+    .card__address-p {
+        font-size: 12px;
+    }
+
+    .card__description-p {
+        font-size: 12px;
+    }
+}

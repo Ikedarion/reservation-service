@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endsection
 
-@section('link_url','../menu1.blade.php')
+@section('link_url','/menu/public')
 
 @section('content')
 <div class="login-form">
