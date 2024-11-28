@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Fortify;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegisterUserController extends Controller
@@ -23,13 +25,24 @@ class RegisterUserController extends Controller
                 Fortify::username() => Str::lower($request->{Fortify::username()}),
             ]);
         }
-
         $user = $creator->create($request->validated());
-
         event(new Registered($user));
 
-        return redirect()->route('login');
+        return redirect()->route('thanks');
     }
 
+    public function login(LoginRequest $request)
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+
+            if ($user->email_verified_at === null) {
+                return redirect()->route('verification.notice');
+            }
+            return redirect()->route('home');
+        }
+
+        return back()->with('error', 'このメールアドレスは登録されていません。');
+    }
 
 }

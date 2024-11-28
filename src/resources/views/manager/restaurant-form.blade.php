@@ -3,6 +3,7 @@
 @section('link_url','/menu/user')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/manager/restaurant-form.css') }}">
 @endsection
 
@@ -79,7 +80,6 @@
             </div>
 
             <div id="preview-card" style="display: none;" class="preview__content">
-                <a id="close-preview-btn" class="close-preview">閉じる</a>
                 <div class="new__card">
                     <div class="header__item">
                         <p class="home__link" href="">
@@ -104,104 +104,14 @@
                         </div>
                     </div>
                 </div>
+                <a id="close-preview-btn" class="close-preview">閉じる</a>
             </div>
         </div>
-
-
         @endif
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const genreSelect = document.getElementById("genre");
-                const addressInput = document.getElementById("address");
-                const autoTagInput = document.getElementById("auto-tag");
-
-                function extractPrefecture(address) {
-                    const prefecturePattern = /(東京都|北海道|(?:京都|大阪)府|[一-龯]{2,3}県)/;
-                    const match = address.match(prefecturePattern);
-                    return match ? match[0] : "";
-                }
-
-                // タグの更新
-                function updateAutoTags() {
-                    const genre = genreSelect.value.trim();
-                    const prefecture = extractPrefecture(addressInput.value).trim();
-
-                    const autoTags = [genre ? `#${genre}` : "", prefecture ? `#${prefecture}` : ""].filter(tag => tag);
-
-                    autoTagInput.value = autoTags.join(" ");
-                    console.log("Auto Tag Input Value after update:", autoTagInput.value);
-                }
-
-                genreSelect.addEventListener("change", updateAutoTags);
-                addressInput.addEventListener("input", updateAutoTags);
-
-                document.getElementById("preview-button").addEventListener("click", function(event) {
-                    event.preventDefault(); // フォーム送信を防ぐ
-
-                    const name = document.getElementById("name").value;
-                    const genre = document.getElementById("genre").value;
-                    const address = document.getElementById("address").value;
-                    const description = document.getElementById("description").value;
-                    const image = document.getElementById("image").files[0];
-
-                    document.getElementById("preview-name").textContent = name;
-                    document.getElementById("preview-genre").textContent = `#${genre}`;
-
-                    // 住所から都道府県だけを抽出して表示
-                    const prefecture = extractPrefecture(address);
-                    document.getElementById("preview-address").textContent = `#${prefecture}`;
-
-                    document.getElementById("preview-description").textContent = description;
-
-                    const previewImageTag = document.getElementById("preview-image-tag");
-
-                    if (image) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            previewImageTag.src = e.target.result;
-                            document.getElementById("preview-card").style.display = "block";
-                        };
-                        reader.readAsDataURL(image);
-                    } else {
-                        previewImageTag.src = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
-                        document.getElementById("preview-card").style.display = "block";
-                    }
-                });
-
-                const showFormBtn = document.getElementById("show-form-btn");
-                const createForm = document.getElementById("create-form");
-                const modal = document.getElementById("modal");
-                const previewCard = document.getElementById("preview-card");
-                const closePreviewBtn = document.getElementById("close-preview-btn");
-
-                if (createForm.classList.contains('open')) {
-                    createForm.style.display = "block";
-                    modal.style.display = "none";
-                } else {
-                    createForm.style.display = "none"; // 'open' がない場合、フォームを非表示
-                    modal.style.display = "block"; // モーダルを表示
-                }
-
-                showFormBtn.addEventListener('click', function() {
-                    modal.style.display = "none";
-                    createForm.style.display = "block";
-                    createForm.classList.add('open');
-                });
-
-                document.getElementById("close-form-btn").addEventListener("click", function() {
-                    createForm.style.display = "none";
-                    modal.style.display = "block";
-                    createForm.classList.remove('open');
-                });
-
-                closePreviewBtn.addEventListener("click", function() {
-                    previewCard.style.display = "none";
-                });
-
-            });
-        </script>
     </div>
 </div>
-
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/restaurant-form.js') }}"></script>
+@endpush

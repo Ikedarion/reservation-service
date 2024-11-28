@@ -1,12 +1,23 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
 @endsection
 
-@section('link_url','/menu/public')
+@section('link_url','/menu/user')
 
 @section('content')
+@if(session('success'))
+<div class="message message--success">
+    {{ session('success')}}
+</div>
+@endif
+@if(session('error'))
+<div class="message message--error">
+    {{ session('error')}}
+</div>
+@endif
 <div class="login-form">
     <h5 class="form__heading">Login</h5>
     <div class="form__inner">

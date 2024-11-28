@@ -1,0 +1,37 @@
+.cancel-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.cancel-h3 {
+    margin-top: 40px;
+}
+.cancel-p {
+    margin-bottom:50px;
+}
+
+.btn.btn-primary {
+    padding: 10px 20px;
+    background-color: rgb(28, 93, 255);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn.btn-home {
+    margin-left: 20px;
+    padding: 9px 20px;
+    background-color: #ffffff;
+    color: rgb(40, 110, 239);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 14px;
+    border: 1px solid #1972d1;
+}

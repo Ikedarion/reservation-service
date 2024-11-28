@@ -19,14 +19,14 @@
         background-color: white;
         margin: 0 auto;
         margin-top: 80px;
-        box-shadow: 3px 3px 6px #aaaaaa;
-        border-radius: 15px;
+        box-shadow: 3px 3px 5px #cccccc;
+        border-radius: 5px;
     }
 
     .heading {
         padding-top: 90px;
         font-size: 20px;
-        margin-bottom: 50px;
+        margin-bottom: 45px;
         letter-spacing: 1px;
         color: #333;
     }
@@ -99,6 +99,7 @@
 <div class="content">
     <div class="container">
         <div class="heading">
+            決済が完了しました<br>
             ご予約ありがとうございます
         </div>
         <div class="link">

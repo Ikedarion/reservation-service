@@ -24,7 +24,7 @@
             <div class="detail-card__inner">
                 <div class="card">
                     <div class="header__item">
-                        <p class="home__link" href="">
+                        <p class="home__link">
                             <span>
                                 < </span>
                         </p>
@@ -46,7 +46,7 @@
                                 <p class="tag-p">#{{ $restaurant->genre }}</p>
                             </div>
                             <div class="card__address">
-                                <p class="card__address-p">{{ $restaurant->address }}</p>
+                                <p class="card__address-p"></p>
                             </div>
                             <div class="card__description">
                                 <p class="card__description-p">{{ $restaurant->description }}</p>
@@ -129,10 +129,9 @@
                                 <div class="card__heading">
                                     <p id="preview-name"></p>
                                 </div>
-                                <a id="close-preview-btn" class="close-preview">閉じる</a>
                     </div>
                     <div class="card__inner">
-                        <div class="card__image" id="preview-image">
+                        <div class="card__image" id="preview-image" data-image="{{ $restaurant->image ?? 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg' }}">
                             <img src="" alt="Image" id="preview-image-tag">
                         </div>
                         <div class="card__content">
@@ -146,99 +145,13 @@
                         </div>
                     </div>
                 </div>
+                <a id="close-preview-btn" class="close-preview">閉じる</a>
             </div>
         </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const genreSelect = document.getElementById("genre");
-                const addressInput = document.getElementById("address");
-                const autoTagInput = document.getElementById("auto-tag");
-
-                function extractPrefecture(address) {
-                    const prefecturePattern = /(東京都|北海道|(?:京都|大阪)府|[一-龯]{2,3}県)/;
-                    const match = address.match(prefecturePattern);
-                    return match ? match[0] : "";
-                }
-
-                // タグの更新
-                function updateAutoTags() {
-                    const genre = genreSelect.value.trim();
-                    const prefecture = extractPrefecture(addressInput.value).trim();
-
-                    const autoTags = [genre ? `#${genre}` : "", prefecture ? `#${prefecture}` : ""].filter(tag => tag);
-
-                    autoTagInput.value = autoTags.join(" ");
-                }
-
-                genreSelect.addEventListener("change", updateAutoTags);
-                addressInput.addEventListener("input", updateAutoTags);
-
-                document.getElementById("preview-button").addEventListener("click", function(event) {
-                    event.preventDefault(); // フォーム送信を防ぐ
-
-                    const name = document.getElementById("name").value;
-                    const genre = document.getElementById("genre").value;
-                    const address = document.getElementById("address").value;
-                    const description = document.getElementById("description").value;
-                    const image = document.getElementById("image").files[0];
-
-                    document.getElementById("preview-name").textContent = name;
-                    document.getElementById("preview-genre").textContent = `#${genre}`;
-
-                    // 住所から都道府県だけを抽出して表示
-                    const prefecture = extractPrefecture(address);
-                    document.getElementById("preview-address").textContent = `#${prefecture}`;
-
-                    document.getElementById("preview-description").textContent = description;
-
-                    const previewImageTag = document.getElementById("preview-image-tag");
-
-                    if (image) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            previewImageTag.src = e.target.result;
-                            document.getElementById("preview-card").style.display = "block";
-                        };
-                        reader.readAsDataURL(image);
-                    } else {
-                        const databaseImage = "{{ $restaurant->image ?? 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg' }}";
-                        previewImageTag.src = databaseImage; // データベース画像またはデフォルト画像を表示
-                        document.getElementById("preview-card").style.display = "block";
-                        document.getElementById("preview-card").style.display = "block";
-                    }
-                });
-
-                const editBtn = document.getElementById("edit-btn");
-                const createForm = document.getElementById("create-form");
-                const previewCard = document.getElementById("preview-card");
-                const closePreviewBtn = document.getElementById("close-preview-btn");
-
-                const detail = document.getElementById("detail");
-                const closeFormBtn = document.getElementById("close-form-btn");
-
-                if (createForm.classList.contains('open')) {
-                    detail.style.display = "none";
-                    createForm.style.display = "block";
-                }
-
-                editBtn.addEventListener('click', function() {
-                    detail.style.display = "none";
-                    createForm.classList.add('open');
-                    createForm.style.display = "block";
-                });
-
-                closeFormBtn.addEventListener("click", function() {
-                    createForm.classList.remove('open');
-                    createForm.style.display = "none";
-                    detail.style.display = "block";
-                });
-
-                closePreviewBtn.addEventListener("click", function() {
-                    previewCard.style.display = "none";
-                });
-            });
-        </script>
     </div>
 </div>
-
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/restaurant-detail.js') }}"></script>
+@endpush

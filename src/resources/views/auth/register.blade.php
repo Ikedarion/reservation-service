@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('link_url','/menu/public')
+@section('link_url','/menu/user')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
 @endsection
 

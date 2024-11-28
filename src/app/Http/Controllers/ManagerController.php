@@ -28,11 +28,11 @@ class ManagerController extends Controller
     public function index()
     {
         $userId = Auth::id();
+        $today = \Carbon\Carbon::today();
 
         $reservations = Reservation::whereHas('restaurant',function($query) use($userId) {
             $query->where('user_id',$userId);
-        })->paginate(15);
-
+        })->where('date', '>=' , $today)->paginate(15);
         return view('/manager/reservation',compact('reservations'));
     }
 
@@ -67,7 +67,6 @@ class ManagerController extends Controller
         $date = Carbon::parse($request->input('date_'. $id))->format('Y-m-d');
         $time = Carbon::parse($request->input('time_' . $id))->format('H:i:s');
         $dateTime = $date . ' ' . $time;
-
         $number = $request->input('number_' . $id);
         $status = $request->input('status_' . $id);
 
@@ -75,7 +74,6 @@ class ManagerController extends Controller
         if (!$reservation) {
             return redirect()->back()->with('error', '予約が見つかりません');
         }
-
         $reservation->update([
             'date' => $dateTime,
             'number' => $number,
@@ -99,7 +97,6 @@ class ManagerController extends Controller
     public function show()
     {
         $userId = Auth::id();
-
         $restaurant = Restaurant::where('user_id', $userId)->first();
 
         if (!$restaurant) {
@@ -114,14 +111,13 @@ class ManagerController extends Controller
     public function showDetail()
     {
         $userId = Auth::id();
+        $areas = $this->areas;
+        $genres = $this->genres;
         $restaurant = Restaurant::where('user_id', $userId)->first();
 
         if (!$restaurant) {
             return redirect()->route('manager.create');
         }
-
-        $areas = $this->areas;
-        $genres = $this->genres;
 
         return view('/manager/restaurant-detail', compact('restaurant', 'areas', 'genres'));
     }
@@ -172,7 +168,6 @@ class ManagerController extends Controller
         if($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images','public');
             $input['image'] = $imagePath;
-
             if($restaurant->image) {
                 Storage::delete($restaurant->image);
             }
@@ -182,5 +177,10 @@ class ManagerController extends Controller
 
         $restaurant->update($input);
         return redirect()->route('manager.detail')->with('success', '店舗情報を更新しました。');
+    }
+
+    public function showReviews()
+    {
+        return view('/manager/reviews');
     }
 }

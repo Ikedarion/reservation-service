@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
-@if(Auth::check())
 @section('link_url','/menu/user')
-@endif
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
 @endsection
 
@@ -24,23 +23,6 @@
         <option value="{{ $genre }}">{{ $genre }}</option>
         @endforeach
     </select>
-    <script>
-        function updateOptions() {
-            const areaOption = document.querySelector('.responsive-area');
-            const genreOption = document.querySelector('.responsive-genre');
-
-            // ウィンドウの幅が480px以下の場合のみテキストを変更
-            if (window.innerWidth <= 480) {
-                areaOption.textContent = "area";
-                genreOption.textContent = "genre";
-            } else {
-                areaOption.textContent = "All area";
-                genreOption.textContent = "All genre";
-            }
-        }
-        document.addEventListener('DOMContentLoaded', updateOptions);
-        window.addEventListener('resize', updateOptions);
-    </script>
     <button class="submit" type="submit" name="button">
         <i class="fas fa-search"></i>
     </button>
@@ -51,6 +33,9 @@
 @section('content')
 <div class="home_content">
     <div class="home__inner">
+        @if($restaurants->isEmpty())
+        <p class="no-results">該当する店舗がありません。</p>
+        @else
         <div class="card__container">
             @foreach( $restaurants as $restaurant )
             <div class="card">
@@ -87,6 +72,27 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function updateOptions() {
+        const areaOption = document.querySelector('.responsive-area');
+        const genreOption = document.querySelector('.responsive-genre');
+
+        // ウィンドウの幅が480px以下の場合のみテキストを変更
+        if (window.innerWidth <= 480) {
+            areaOption.textContent = "area";
+            genreOption.textContent = "genre";
+        } else {
+            areaOption.textContent = "All area";
+            genreOption.textContent = "All genre";
+        }
+    }
+    document.addEventListener('DOMContentLoaded', updateOptions);
+    window.addEventListener('resize', updateOptions);
+</script>
+@endpush

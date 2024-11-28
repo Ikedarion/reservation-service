@@ -3,6 +3,7 @@
 @section('link_url','/menu/user')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/manager/reservation.css') }}">
 @endsection
 
@@ -35,7 +36,7 @@
 
                     <div class="res-form__cell">
                         <label class="res-form__label" for="end_date">終了日</label>
-                        <input class="res-form__date" type="date" name="end_date" id="end_date" value="<?php echo date('Y-m-d', strtotime('+1 week')); ?>" style="color: #888; font-size: 12px;">
+                        <input class="res-form__date" type="date" name="end_date" id="end_date" value="" style="color: #888; font-size: 12px;">
                     </div>
 
                     <div class="res-form__cell">
@@ -70,9 +71,10 @@
                         <label class="res-form__label" for="status">ステータス</label>
                         <select class="res-form__status" name="status" id="status" style="color: #888; font-size: 12px;">
                             <option class="res-form__status-option" value="" hidden>選択</option>
-                            <option class="res-form__status-option" value="予約済み">予約済み</option>
+                            <option class="res-form__status-option" value="予約確定">予約確定</option>
                             <option class="res-form__status-option" value="キャンセル">キャンセル</option>
                             <option class="res-form__status-option" value="来店済み">来店済み</option>
+                            <option class="res-form__status-option" value="完了">完了</option>
                         </select>
                     </div>
 
@@ -112,23 +114,23 @@
                 <td class="table__item">{{ \Carbon\Carbon::parse($reservation->date)->format('H:i') }}</td>
                 <td class="table__item">{{ $reservation->user->name }}</td>
                 <td class="table__item">{{ $reservation->number }}人</td>
-                <td class="table__item
-                    {{ $reservation->status === '予約済み' ? 'reserved' : '' }}
-                    {{ $reservation->status === 'キャンセル' ? 'cancelled' : '' }}
-                    {{ $reservation->status === '来店済み' ? 'visited' : '' }}">
-                    {{ $reservation->status }}
-                </td>
                 <td class="table__item">
-                    <div class="table__item-items">
-                        <button class="openSidebarButton" data-reservation-id="{{ $reservation->id }}">
-                            <i class="fas fa-pencil-alt" style="color: #444;"></i>
-                        </button>
-                        <form class="res-table__delete" action="{{ route('manager.delete', $reservation->id ) }}" method="post" onsubmit="return confirmDelete('この予約をキャンセルしてよろしいですか？')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="res-table__delete-submit"><i class="fas fa-trash-alt" style="color: #444;"></i></button>
-                        </form>
-                    </div>
+                    <span class="table__item-status
+                    {{ $reservation->status === '予約確定' ? 'reserved' : '' }}
+                    {{ $reservation->status === 'キャンセル' ? 'cancelled' : '' }}
+                    {{ in_array($reservation->status, ['来店済み', '完了']) ? 'visited' : '' }}"">{{ $reservation->status }}</span>
+                </td>
+                <td class=" table__item">
+                        <div class="table__item-items">
+                            <button class="openSidebarButton" data-reservation-id="{{ $reservation->id }}">
+                                <i class="fas fa-pencil-alt" style="color: #555;"></i>
+                            </button>
+                            <form class="res-table__delete" action="{{ route('manager.delete', $reservation->id ) }}" method="post" onsubmit="return confirmDelete('この予約データを削除してよろしいですか？')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="res-table__delete-submit"><i class="fas fa-trash-alt" style="color: #555;"></i></button>
+                            </form>
+                        </div>
                 </td>
             </tr>
             <div class="sidebar {{ $errors->hasAny(['date_' . $reservation->id, 'time_' . $reservation->id, 'number_' . $reservation->id, 'status_' . $reservation->id]) ? 'open' : '' }}" id="sidebar{{ $reservation->id }}">
@@ -181,9 +183,10 @@
                         <div class="sidebar__group">
                             <label class="sidebar__label" for="sidebar_status{{ $reservation->id }}">ステータス</label>
                             <select class="sidebar__select" name="status_{{ $reservation->id }}" id="sidebar_status{{ $reservation->id }}">
-                                <option class="sidebar__status-option" value="予約済み">予約済み</option>
-                                <option class="sidebar__status-option" value="キャンセル">キャンセル</option>
-                                <option class="sidebar__status-option" value="来店済み">来店済み</option>
+                                <option class="sidebar__status-option" value="予約確定" {{ old('status' . $reservation->id, $reservation->status) == '予約確定' ? 'selected' : '' }}>予約確定</option>
+                                <option class="sidebar__status-option" value="キャンセル" {{ old('status_' . $reservation->id, $reservation->status) == 'キャンセル' ? 'selected' : '' }}>キャンセル</option>
+                                <option class="sidebar__status-option" value="来店済み" {{ old('status' . $reservation->id, $reservation->status) == '来店済み' ? 'selected' : ''}}>来店済み</option>
+                                <option class="sidebar__status-option" value="完了" {{ old('status' . $reservation->id, $reservation->status) == '完了' ? 'selected' : ''}}>完了</option>
                             </select>
                         </div>
                         @error('status_' . $reservation->id)
@@ -200,9 +203,11 @@
         @endif
     </div>
 </div>
+@endsection
+
+@push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // サイドバーを開くためのボタン
         const openSidebarButtons = document.querySelectorAll('.openSidebarButton');
         openSidebarButtons.forEach(button => {
             button.addEventListener('click', function() {
@@ -214,7 +219,6 @@
             });
         });
 
-        // サイドバーを閉じるボタン
         const closeButtons = document.querySelectorAll('.sidebar-close');
         closeButtons.forEach(button => {
             button.addEventListener('click', function() {
@@ -231,8 +235,4 @@
         return confirm(message);
     }
 </script>
-
-
-
-
-@endsection
+@endpush

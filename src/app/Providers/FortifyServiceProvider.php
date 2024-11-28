@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use App\Http\Requests\LoginRequest;
-use App\Http\Controllers\UserController;
-use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 
 
@@ -53,6 +53,9 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
 
     }
 }

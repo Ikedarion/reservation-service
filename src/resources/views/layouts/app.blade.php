@@ -6,29 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
     @yield('css')
 </head>
-<style>
-    body {
-        font-family: 'Noto Sans JP', sans-serif;
-    }
-</style>
 
 <body>
     <header class="header">
         <div class="app">
-            <a href="@yield('link_url')" class="menu__link">
+
+            @if(auth()->check())
+            @if(auth()->user()->role === '管理者')
+            <div class="menu">
+                <a href="#" class="menu__link">
+                    <div class="square">
+                        <div class="line long"></div>
+                        <div class="line medium"></div>
+                        <div class="line short"></div>
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="admin-item">
+                        <a class="admin__link" href="/">Home</a>
+                        <a class="admin__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
+                        <a class="admin__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
+                        <form class="admin-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <input type="submit" value="ログアウト">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @elseif(auth()->user()->role === '店舗代表者')
+            <div class="menu">
+                <a href="#" class="menu__link">
+                    <div class="square">
+                        <div class="line long"></div>
+                        <div class="line medium"></div>
+                        <div class="line short"></div>
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="manager-item">
+                        <a class="manager__link" href="{{ route('manager.index') }}">予約一覧</a>
+                        <a class="manager__link" href="{{ route('manager.detail') }}">店舗詳細</a>
+                        <form class="manager-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <input type="submit" value="ログアウト">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @elseif(auth()->user()->role === 'ユーザー')
+            <a href="@yield('link_url')" class="user-menu__link">
                 <div class="square">
                     <div class="line long"></div>
                     <div class="line medium"></div>
                     <div class="line short"></div>
                 </div>
             </a>
+            @endif
+            @else
+            <a href="@yield('link_url')" class="user-menu__link">
+                <div class="square">
+                    <div class="line long"></div>
+                    <div class="line medium"></div>
+                    <div class="line short"></div>
+                </div>
+            </a>
+            @endif
+
             <h1 class="h1">Rese</h1>
         </div>
         <div class="header__item">@yield('item')</div>
@@ -37,6 +83,9 @@
     <main>
         @yield('content')
     </main>
+
+    <script src="{{ asset('js/common.js') }}" defer></script>
+    @stack('scripts')
 </body>
 
 </html>

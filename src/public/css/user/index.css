@@ -1,3 +1,9 @@
+html,
+body {
+    background-color: #ebebeb;
+    height: 100%;
+}
+
 .header__item {
     width: 50%;
 }
@@ -6,7 +12,7 @@
     width: 100%;
     height: 40px;
     display: flex;
-    box-shadow: 2px 2px 2px #8b8b8b;
+    box-shadow: 2px 2px 1.5px #b5b5b5;
     border-radius: 4px;
 }
 
@@ -14,7 +20,7 @@
     width: 21.25%;
     border: none;
     border: 1px solid #ebebeb;
-    color: #707070;
+    color: #a1a1a1;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     outline: none;
@@ -52,15 +58,7 @@
     background-color: #ffffff;
     text-align: center;
     color: #d3d3d3;
-}
-
-.input:focus,
-.select:focus,
-.submit:focus {
-    border-top: 1px solid #c7c7c7;
-    border-left: 1px solid #c7c7c7;
-    border-right: 1px solid #c7c7c7;
-    border-bottom: 1px solid #c7c7c7;
+    appearance: none;
 }
 
 .home_content {
@@ -70,6 +68,12 @@
 
 .home__inner {
     max-width: 1400px;
+}
+
+.no-results {
+    margin: 80px auto;
+    text-align: center;
+    color: #707070;
 }
 
 .card__container {
@@ -85,7 +89,7 @@
     margin-bottom: 15px;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 3px 3px 3px #9b9b9b;
+    box-shadow: 2px 2px 3px #25262966;
     position: relative;
 }
 
@@ -226,11 +230,10 @@
     .submit {
         width: 14%;
         border: none;
-        border: 1px solid #ddd;
+        border: 1px solid #ededed;
+        border-right: none;
         color: #989898;
         background-color: #ffffff;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
         text-align: center;
     }
 }

@@ -3,6 +3,9 @@
 @section('link_url','/menu/user')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/user/my-page.css') }}">
 @endsection
 
@@ -34,10 +37,12 @@
                 <div class="res__heading">予約状況</div>
 
                 <div class="scroll">
-                    @if($reservations && $reservations->count() > 0)
-                    @foreach($reservations as $reservation)
+                    @if($filteredReservations && !$filteredReservations->isEmpty())
+                    @foreach($filteredReservations as $reservation)
                     <div class="res__container">
-                        <form class="res__form" action="{{ route('delete', $reservation->id ) }}" method="post" onsubmit="return confirmDelete('この予約をキャンセルしてよろしいですか？')">
+                        <form class="res__form" action="{{ route('delete', $reservation->id ) }}" method="post" @if($reservation->status === '予約確定')
+                            onsubmit="return confirmDelete('この予約をキャンセルしてよろしいですか？')"
+                            @endif>
                             @csrf
                             @method('delete')
                             <button class="res__form-submit">
@@ -46,8 +51,22 @@
                                 </div>
                             </button>
                         </form>
+
                         <div class="res__title">
-                            <i class="fas fa-clock"></i>予約&nbsp;{{ $loop->iteration }}
+                            <i class="fa-solid fa-thumbtack"></i>予約&nbsp;{{ $loop->iteration }}
+                            <div class="table__header">
+                                @if($reservation->status === '来店済み')
+                                <a class="modal__button" href="#reviewModal{{$reservation->id}}">
+                                    <i class="fa-regular fa-thumbs-up"></i>&nbsp;評価する
+                                </a>
+                                @include('components.review-form-modal',['reservation' => $reservation])
+                                @elseif($reservation->status == '予約確定')
+                                <a class="modal__button" href="#modal{{$reservation->id}}">
+                                    <i class="fas fa-edit"></i>&nbsp;変更する
+                                </a>
+                                @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers])
+                                @endif
+                            </div>
                         </div>
                         <table class="table">
                             <tr class="table__row">
@@ -67,56 +86,20 @@
                                 <td class="table__item" id="number">{{ $reservation->number }}人</td>
                             </tr>
                         </table>
-                        <div class="table__header">
-                            <a class="modal__button" href="#modal{{$reservation->id}}">
-                                <i class="fas fa-edit"></i>&nbsp;変更する
-                            </a>
-                            <div class="modal {{ $errors->hasAny(['date_' . $reservation->id, 'time_' . $reservation->id, 'number_' . $reservation->id]) ? 'open' : ' ' }}" id="modal{{$reservation->id}}">
-                                <div class="modal__inner">
-                                    <div class="modal__content">
-                                        <a class="close" href="#" onclick="closeModalAndReturn();">×</a>
-                                        <form class="modal__form" action="{{ route('update',$reservation->id) }}" method="post">
-                                            @csrf
-                                            @method('PATCH')
-                                            <div class="modal__group">
-                                                <input type="hidden" name="restaurant_id" value="{{ $reservation->restaurant->id }}">
-                                                <label class="modal__label" for="date_{{$reservation->id}}">日付</label>
-                                                <input class="modal__calender" type="date" id="date_{{$reservation->id}}" name="date_{{$reservation->id}}" value="{{ old('date_' . $reservation->id, \Carbon\Carbon::parse($reservation->date)->format('Y-m-d')) }}">
-                                                @error('date_' . $reservation->id)
-                                                <div class="error">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                            <div class="modal__group">
-                                                <label class="modal__label" for="time_{{$reservation->id}}">時間</label>
-                                                <input class="modal__input" type="time" id="time_{{$reservation->id}}" name="time_{{$reservation->id}}" value="{{ old('time_' . $reservation->id, \Carbon\Carbon::parse($reservation->date)->format('H:i')) }}" max="23:00" min="06:00">
-                                                @error('time_' . $reservation->id)
-                                                <div class="error">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                            <div class="modal__group">
-                                                <label class="modal__label" for="number_{{$reservation->id}}">人数</label>
-                                                <select class="modal__select" name="number_{{$reservation->id}}" id="number_{{$reservation->id}}">
-                                                    <option value="" selected hidden>人数</option>
-                                                    @foreach($numbers as $number)
-                                                    <option value="{{ $number }}" {{ old('number_' . $reservation->id ,$reservation->number) == $number ? 'selected' : '' }}>{{ $number }}人</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('number_' . $reservation->id)
-                                                <div class="error">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                                <input class="res-modal__button" type="submit" value="登録"></input>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+
+                        @if ($reservation->status == '予約確定')
+                        <div class="res-items">
+                            <div class="qrCode">
+                                <a class="qrCode-link" href="{{ route('reservation.QrCode', $reservation->id) }}" target="_blank">
+                                    QRコードを開く
+                                </a>
+                                <span class="material-icons">
+                                    open_in_new
+                                </span>
                             </div>
                         </div>
+                        @endif
+
                     </div>
                     @endforeach
                     @else
@@ -126,27 +109,6 @@
                     @endif
                 </div>
             </div>
-
-            <script>
-                function confirmDelete(message) {
-                    return confirm(message);
-                }
-
-                function closeModalAndReturn() {
-                    const openModal = document.querySelector('.modal.open');
-                    if (openModal) {
-                        openModal.classList.remove('open');
-                    }
-                }
-            </script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const openModal = document.querySelector('.modal.open');
-                    if (openModal) {
-                        openModal.classList.add('open');
-                    }
-                });
-            </script>
 
             <div class="favorites">
                 <div class="fav__heading">お気に入り店舗</div>
@@ -196,5 +158,36 @@
         </div>
     </div>
 </div>
-
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const reviewLinks = document.querySelectorAll('.modal__button');
+        reviewLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetModalId = link.getAttribute('href').slice(1);
+                const targetModal = document.getElementById(targetModalId);
+                if (targetModal) {
+                    targetModal.classList.add('open');
+                }
+            });
+        });
+
+        const closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const modal = link.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('open');
+                }
+            });
+        });
+    });
+
+    function confirmDelete(message) {
+        return confirm(message);
+    }
+</script>
+@endpush

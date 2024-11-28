@@ -14,7 +14,7 @@
     color: white;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    box-shadow: 3px 4px 5px #686868;
+    box-shadow: 3.4px 3px 3.5px #2f2f3176;
 }
 
 .form__inner {
@@ -26,7 +26,7 @@
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     border: 1px solid #ddd;
-    box-shadow: 3px 4px 5px #8b8b8b;
+    box-shadow: 3px 3px 3.5px #21212259;
 }
 
 .form__group {
@@ -37,7 +37,7 @@
 .form__label {
     margin: 6px 15px 10px 17px;
     font-size: 23px;
-    color: rgb(65, 65, 65);
+    color: #4e4e51;
 }
 
 .form__input {
@@ -45,7 +45,8 @@
     margin: 6px;
     padding: 6px;
     border: none;
-    border-bottom: 1px solid #3b3b3b;
+    border-bottom: 1px solid #4e4e51;
+    color: #616265;
 }
 
 .form__button {
@@ -61,7 +62,7 @@
 }
 
 .form__button:active {
-    transform: scale(0.85);
+    transform: scale(0.95);
 }
 
 .error {

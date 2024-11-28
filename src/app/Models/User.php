@@ -4,14 +4,21 @@ namespace App\Models;
 
 use App\Imports\RestaurantsImport;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Cashier\Billable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\VerifyEmailNotification;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +30,10 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'stripe_id',
+        'pm_type',
+        'pm_last_four',
+        'trial_ends_at',
     ];
 
     /**
@@ -75,6 +86,16 @@ class User extends Authenticatable
                 ->orWhereHas('restaurant',function ($query) use ($keyword) {
                     $query->where('name','like' ,'%' . $keyword . '%');
                 });
+        }
+        return $query;
+    }
+
+    public function scopeUserSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orWhere('email', 'like', '%' . $keyword . '%')
+                ->orWhere('role', 'like', '%' . $keyword . '%');
         }
         return $query;
     }

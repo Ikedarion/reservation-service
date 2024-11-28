@@ -1,0 +1,203 @@
+body,
+html {
+    background-color: #f4f5f7;
+}
+
+.message {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.9s forwards;
+}
+
+.message--success {
+    background-color: #0fa114f2;
+}
+
+.message--error {
+    background-color: #ef4444;
+}
+
+.error-message {
+    color: #f43f5e;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mail__content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mail__inner {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 40px 50px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.mail__header {
+    text-align: center;
+    margin: 0px 24px 20px 0;
+    color: #5b636f;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.mail-form {
+    width: 100%;
+}
+
+.checkboxes__button {
+    width: 160px;
+    padding: 6px 16px;
+    background-color: #e2e8f0;
+    border: 1px solid #cbd3da;
+    color: #4b5563;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: block;
+}
+
+.checkboxes__button:hover {
+    background-color: #cbd5e1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-group {
+    padding: 10px 20px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    max-height: 420px;
+    overflow-y: auto;
+    margin-top: 10px;
+    display: none;
+}
+
+.checkbox-group.open {
+    display: block;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: #374151;
+    font-size: 14px;
+}
+
+.checkbox:last-child {
+    margin-bottom: 0;
+}
+
+.form__group {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.group__items-user {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.form__button {
+    width: calc(33.33% - 5px);
+    padding: 3px 0px;
+    background-color: #f5f7fa;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.form__button:hover {
+    background-color: #ecedf0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form__label {
+    display: inline-block;
+    font-weight: bold;
+    margin: 50px 0 5px;
+    font-size: 14px;
+    color: #5c6776;
+}
+
+.form__input,
+.form__textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #111827;
+    margin-top: 5px;
+    background-color: #ffffff;
+    transition: border-color 0.3s;
+}
+
+.form__textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.group__header {
+    color: #4b5563;
+    font-size: 13px;
+    margin: 15px 0 10px;
+}
+
+.form__submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #025fc3;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s;
+    margin-top: 70px;
+}
+
+.form__submit:hover {
+    background-color: #054c99;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+

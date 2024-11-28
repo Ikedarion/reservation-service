@@ -2,6 +2,9 @@ html,
 body {
     background-color: #f3f3f3;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .header {
@@ -39,8 +42,8 @@ body {
 }
 
 .square:hover {
-    background-color: rgb(0, 42, 208);
-    transform: translateY(0.5px);
+    background-color: #0b48ca;
+    box-shadow: 1.5px 2px 2px #adb0c3;
 }
 
 .line {
@@ -53,3 +56,53 @@ body {
 .long { width: 30%; top: 7px; }
 .medium { width: 60%; top: 13px; }
 .short { width: 15%; top: 20px; }
+
+
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1;
+    min-width: 150px;
+    border-radius: 5px;
+}
+
+.manager__link,
+.admin__link {
+    text-decoration: none;
+    color: #00509e;
+    display: block;
+    padding: 8px 12px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    text-shadow: 1.5px 2px 2px #c9ccdd;
+}
+
+.manager__link:hover,
+.admin__link:hover {
+    background-color: #eaeaea;
+    color: #00376b;
+}
+
+.manager-form input,
+.admin-form input {
+    border: none;
+    background-color: #00509e;
+    color: white;
+    padding: 6px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.manager-form input:hover,
+.admin-form input:hover {
+    background-color: #00376b;
+}

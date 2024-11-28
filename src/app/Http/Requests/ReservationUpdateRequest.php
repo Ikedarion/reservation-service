@@ -31,9 +31,9 @@ class ReservationUpdateRequest extends FormRequest
                         $valueDate = Carbon::parse($value);
                         $today = Carbon::today()->format('Y-m-d');
                         if ($value < $today) {
-                            $fail('※ご予約は翌日以降から可能です。');
+                            $fail('※ご予約の変更は翌日以降から可能です。');
                         } elseif ($valueDate->isToday()) {
-                            $fail('※当日のご予約はお受けできません。お手数ですが、お電話にてご確認ください。');
+                            $fail('※当日のご予約はお受けできません。お電話にてご確認ください。');
                         }
                     }
                 ],

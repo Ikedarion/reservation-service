@@ -41,7 +41,7 @@ class CreateRestaurantRequest extends FormRequest
             'address.required' => '住所は必須です。',
             'name.string' => '住所は文字列で入力してください。',
             'description.required' => '説明は必須です。',
-            'description.required' => '説明は文字列で入力してください。',
+            'description.string' => '説明は文字列で入力してください。',
             'image.image' => '画像は画像ファイルでなければなりません。',
             'image.mimes' => '画像はjpeg、png、jpg、gifの形式です。',
             'image.max' => '画像は1MB以内でなければなりません。',

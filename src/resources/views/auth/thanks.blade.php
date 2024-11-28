@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('link_url','/menu/public')
+@section('link_url','/menu/user')
 
 <style>
     .h1 {
@@ -82,7 +82,7 @@
         <div class="heading">
             会員登録ありがとうございます
         </div>
-        <a class="login_link" href="/login">ログイン</a>
+        <a class="login_link" href="{{ url('/login') }}">ログイン</a>
     </div>
 </div>
 

@@ -14,7 +14,7 @@ body {
 
 .reservation__heading {
     text-shadow: none;
-    color: #48494b;
+    color: #58585d;
     font-size: 17px;
     white-space: nowrap;
     justify-content: center;
@@ -59,7 +59,7 @@ body {
     max-width: 1400px;
     height: 100%;
     padding: 0 6% 2% 6%;
-    color: #545457;
+    color: #55555c;
 }
 
 .reservation__inner {
@@ -137,8 +137,8 @@ body {
 }
 
 .res-form__submit {
-    background: linear-gradient(to top, #22529a,#366bb4);
-    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top, #737f89, #96a2ac);
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.238);
     color: white;
     border: none;
     font-size: 12px;
@@ -148,22 +148,19 @@ body {
 
 .res-form__reset {
     background-color: #e7e7e7;
-    border: 1px solid #e3e3e3;
-    color: #5b5b5b;
+    border: 0px solid #e3e3e3;
+    color: #707070;
     margin-bottom: 1px;
     border-radius: 3px;
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.276);
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.238);
 }
 
 .res-form__submit:hover {
-    background: linear-gradient(to bottom, #22529a,
-        #366bb4);
-    box-shadow: 2px 2px 8px #aeb2cb, 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #737f89, #77838c);
 }
 
 .res-form__reset:hover {
-    background-color: #b0b0b0;
-    color: #ffffff;
+    background-color: #e0e0e0;
 }
 
 .res-table {
@@ -179,7 +176,6 @@ body {
 
 .table__header {
     background-color: #e9ecef;
-    color: #474747;
     padding: 13px 15px;
     text-align: center;
     font-weight: bold;
@@ -193,10 +189,10 @@ body {
 }
 
 .res-table tr:hover {
-    background-color: #f1f6ff;
+    background-color: #f2f6fe;
     color: #40434a;
-    transform: scale(1.02);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.059);
     transition: all 0.3s ease;
 }
 
@@ -231,22 +227,29 @@ body {
     align-items: baseline;
 }
 
+.table__item-status {
+    font-size: 9px;
+    padding: 3px 10px;
+    border-radius: 16px;
+    color: white;
+    min-width: 40px;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
 .reserved {
-    color: rgb(4, 157, 4);
-    font-weight: bold;
-    font-size: 13.5px;
+    background-color: #dcecdf;
+    color: #155724;
 }
 
 .cancelled {
-    color: red;
-    font-weight: bold;
-    font-size: 13.5px;
+    background-color: #f5dfe0;
+    color: #721c24;
 }
 
 .visited {
-    color: blue;
-    font-weight: bold;
-    font-size: 13.5px;
+    background-color: #e2e6ed;
+    color: #45596c;
 }
 
 .res-table__delete-submit,
@@ -269,7 +272,6 @@ body {
     box-shadow: -3px -3px 4px #00000014;
 }
 
-
 .sidebar-content {
     background-color: white;
     padding: 60px 7px;
@@ -289,7 +291,7 @@ body {
 }
 
 .fas.fa-arrow-left {
-    color: #4f4f4f;
+    color: #5b5b5b;
 }
 
 .sidebar-close:hover,
@@ -324,9 +326,9 @@ body {
     border: 1px solid #b0b0b0;
     border-radius: 3px;
     padding: 0 12px 0 15px;
-    color: #4c4c4c;
+    color: #535457;
     background-color: #ffffff;
-    box-shadow: 1.3px 1.3px 2px #0000001f;
+    box-shadow: 1.3px 1.3px 2px #00000010;
 }
 
 .sidebar__input-disabled{
@@ -341,7 +343,8 @@ body {
 .sidebar-submit {
     margin-top: 55px;
     padding: 6px 35px;
-    background-color: #1b8126;
+    background: linear-gradient(to top, #737f89, #96a2ac);
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.068);
     color: #ffffff;
     border: none;
     border-radius: 3px;
