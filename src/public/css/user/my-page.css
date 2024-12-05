@@ -243,31 +243,13 @@ body {
 }
 
 
-.modal-review {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.577);
-    z-index: 10;
-    display: none;
-    opacity: 0;
-}
-
-.modal-review.open {
-    display: block;
-    opacity: 1;
-    background-color: rgba(35, 35, 35, 0.472);
-}
-
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.577);
+    background-color: rgba(81, 81, 81, 0.901);
     z-index: 10;
     display: none;
     opacity: 0;
@@ -276,19 +258,20 @@ body {
 .modal.open {
     display: block;
     opacity: 1;
-    background-color: rgba(35, 35, 35, 0.472);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
 .modal__inner {
     position: relative;
-    margin: 12% auto;
+    margin: 10% auto;
     width: 385px;
     height: auto;
     background-color: rgb(255, 255, 255);
     padding: 50px 20px 50px 0;
     box-sizing: border-box;
     border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .modal__form {
@@ -336,6 +319,18 @@ body {
     color: #3b3b3b;
 }
 
+.res-modal__button {
+    width: 220px;
+    border: none;
+    padding: 12px 10px;
+    color: white;
+    background-color: rgb(34, 172, 221);
+    border-radius: 30px;
+    transition: background-color 0.3s;
+    transition: font-size 0.3s;
+    margin: 50px 0 15px 30px;
+}
+
 .error {
     display: block;
     text-align: center;
@@ -346,15 +341,44 @@ body {
     margin-left: 15px;
 }
 
+.h4 {
+    color: #434343;
+    margin-left: 30px;
+}
+
 .review-modal__inner {
     position: relative;
-    margin: 12% auto;
-    width: 385px;
+    margin: 2% auto;
+    width: 90vw;
+    max-width: 550px;
     height: auto;
     background-color: rgb(255, 255, 255);
-    padding: 50px 30px 50px 0;
+    padding: 40px 30px 50px 15px;
     box-sizing: border-box;
     border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.review-modal__header {
+    display: flex;
+    align-items: center;
+}
+
+.review-modal__image {
+    width: 150px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.review-modal__image  img {
+    width: 100%;
+}
+
+.review-modal__p {
+    color: #515151;
+    font-size: 13px;
 }
 
 .review-modal__group {
@@ -365,7 +389,7 @@ body {
 .review-modal__label {
     display: block;
     margin-left: 25px;
-    color: #292929;
+    color: #404040;
 }
 
 
@@ -391,25 +415,20 @@ body {
     margin-bottom: 0px;
 }
 
-.res-modal__button {
-    width: 120px;
+.review-modal__button {
+    width: 220px;
     border: none;
-    padding: 7px 10px;
+    padding: 12px 10px;
     color: white;
-    background-color: rgb(33, 146, 53);
-    border-radius: 4px;
+    background-color: rgb(34, 172, 221);
+    border-radius: 30px;
     transition: background-color 0.3s;
     transition: font-size 0.3s;
-    margin: 50px 0px 0 15px;
-    box-shadow: 2px 2px 3px #044a0659;
+    margin: 50px 0 15px 28%;
 }
 
 .res-modal__button:hover {
-    background-color: rgb(24, 172, 13);
-}
-
-.review-modal__button:hover {
-    background-color: rgb(24, 172, 13);
+    background-color: rgb(30, 162, 210);
 }
 
 .close {
@@ -420,6 +439,49 @@ body {
     right: 25px;
     color: #4d4d4d;
 }
+
+
+
+.star-rating {
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    margin-left: 100px;
+    gap: 10px;
+
+}
+
+.star {
+    font-size: 35px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+/* 評価が選ばれた場合の星の色 */
+.star-input:checked~.star {
+    color: gold;
+}
+
+.star-input:checked+.star,
+.star-input:checked~.star {
+    color: gold;
+}
+
+/* ラベルの間隔を調整 */
+.star-input {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
 
 .favorites {
     width: 100%;

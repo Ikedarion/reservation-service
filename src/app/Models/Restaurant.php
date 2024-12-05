@@ -31,6 +31,13 @@ class Restaurant extends Model
 
 
 
+    public function getAverageRatingAttribute()
+    {
+        $reviews = $this->reservations->map(function($reservation) {
+            return $reservation->review;
+        })->filter();
+        return $reviews->isNotEmpty() ? $reviews->avg('rating') : 0;
+    }
 
     public function scopeAreaSearch($query,$area)
     {

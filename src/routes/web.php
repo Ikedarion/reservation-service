@@ -25,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/favorite/{id}', [UserController::class, 'favorite'])->name('favorite');
     Route::get('/search', [UserController::class, 'search'])->name('search');
     Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
+    Route::get('restaurant/{id}/filter', [UserController::class, 'filter'])->name('reviews.filter');
     Route::get('/user/my-page', [UserController::class, 'show'])->name('my-page');
     Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('delete');
     Route::patch('/update/{id}', [UserController::class, 'update'])->name('update');

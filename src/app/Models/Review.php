@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','reservation_id','rating','comment'];
+    protected $fillable = ['user_id','reservation_id','rating','comment','title','nickname'];
 
 
     public function user() {
@@ -18,5 +18,23 @@ class Review extends Model
 
     public function reservation() {
         $this->belongsTo(Reservation::class);
+    }
+
+    public function scopeWithStarRating($query,$starRating)
+    {
+        if($starRating && $starRating != '') {
+            $query->where('rating',$starRating);
+        }
+        return $query;
+    }
+
+    public function scopeSortBy($query, $sortBy)
+    {
+        if ($sortBy == 'newest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($sortBy == 'rating') {
+            $query->orderBy('rating', 'desc');
+        }
+        return $query;
     }
 }

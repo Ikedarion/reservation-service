@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with(['reservations.review'])->get();
         $userId = Auth::id();
 
         $favorites = Restaurant::whereHas('favoriteUsers',function($query) use($userId) {
@@ -84,14 +84,52 @@ class UserController extends Controller
     public function detail($id)
     {
         $restaurant = Restaurant::find($id);
+        $favorite = Favorite::where('restaurant_id',$id);
         $numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
         $reviews = $restaurant->reservations()
-        ->with('review')->get()->pluck('review')->filter();
-        $reviews = $reviews->sortByDesc('created_at');
+        ->with('review')->get()->pluck('review')->filter()
+        ->sortByDesc('created_at');
         $averageRating = $reviews->avg('rating');
 
-        return view('user/detail', compact('restaurant','numbers','reviews','averageRating'));
+        $ratingCounts = $reviews->groupBy('rating')->map(fn($group) => $group->count());
+        $totalReviews = $reviews->count();
+        $ratingPercentages = [];
+
+        for ($i = 5; $i >= 1; $i--) {
+            $ratingPercentages[$i] = $totalReviews > 0
+                ? round(($ratingCounts[$i] ?? 0) / $totalReviews * 100, 1)
+                : 0;
+        }
+
+        return view('user/detail', compact('favorite','restaurant','numbers','reviews','averageRating', 'ratingPercentages'));
+    }
+
+    public function filter(Request $request,$id)
+    {
+        $restaurant = Restaurant::find($id);
+        $favorite = Favorite::where('restaurant_id', $id);
+        $numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+        $reviews = $restaurant->reservations()
+        ->with('review')->get()->pluck('review')->filter()
+        ->sortByDesc('created_at');
+        $averageRating = $reviews->avg('rating');
+
+        $ratingCounts = $reviews->groupBy('rating')->map(fn($group) => $group->count());
+        $totalReviews = $reviews->count();
+        $ratingPercentages = [];
+
+        for ($i = 5; $i >= 1; $i--) {
+            $ratingPercentages[$i] = $totalReviews > 0
+                ? round(($ratingCounts[$i] ?? 0) / $totalReviews * 100, 1)
+                : 0;
+        }
+        $reviews = Review::query()
+                ->withStarRating($request->star_rating)
+                ->sortBy($request->sort_by)
+                ->get();
+        return view('user/detail', compact('favorite','restaurant','numbers','reviews','averageRating', 'ratingPercentages','reviews'));
     }
 
 
@@ -114,7 +152,9 @@ class UserController extends Controller
             }
         )->get();
 
-        return view('user/my_page', compact('restaurants', 'filteredReservations', 'numbers'));
+        $restaurant = Restaurant::where('user_id',$userId)->first();
+
+        return view('user/my_page', compact('restaurants', 'filteredReservations', 'numbers','restaurant'));
     }
 
     public function delete($id)
@@ -162,19 +202,29 @@ class UserController extends Controller
     {
         $request->validate([
             'rating' => 'required',
-            'comment' => 'nullable|string',
+            'comment' => 'nullable|string|max:255',
+            'title' => 'required|string|max:30',
+            'nickname' => 'nullable|string|max:10'
         ], [
             'rating.required' => '評価は必須です。',
-            'comment.string' => 'コメントは文字列で入力してください。',
+            'comment.max' => '本文は255文字以内で入力してください。',
+            'comment.string' => '本文は文字列で入力してください。',
+            'title.required' => 'タイトルを入力してください。',
+            'title.string' => 'タイトルは文字列で入力してください。',
+            'title.max' => 'タイトルは30字以内で入力してください。',
+            'nickname.string' => 'ニックネームは文字列で入力してください。',
+            'nickname.max' => 'ニックネームは10字以内で入力してください。',
         ]);
 
         $userId = Auth::id();
-        $input = $request->only('rating','comment');
+        $input = $request->only('rating','comment','title','nickname');
         Review::create([
             'user_id' => $userId,
             'reservation_id' => $id,
             'rating' => $input['rating'],
             'comment' => $input['comment'] ?? null,
+            'title' => $input['title'],
+            'nickname' => $input['nickname'] ?? null,
         ]);
 
         $reservation = Reservation::find($id);

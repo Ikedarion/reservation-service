@@ -4,6 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('css/user/detail.css') }}">
 <script src="https://js.stripe.com/v3/"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -40,45 +41,29 @@
                             <p class="description-p">{{ $restaurant->description }}</p>
                         </div>
                         <div class="card__rating">
-                            @if($reviews->isNotEmpty())
-                            <a href="#modal" class="review">レビューを見る</a>
-                            <span class="rating-text"><i class="fa-solid fa-star" style="color: #ffcc00; "></i>&nbsp;{{ number_format($averageRating, 1) }}&nbsp;({{ $reviews->count()}}件)</span>
-                            @else
-                            <p class="review">レビュー(0件)</p>
+                            @if($reviews)
+                            <a href="#modal" class="review">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <=floor($averageRating))
+                                    <i class="las la-star gold star"></i>
+                                    @elseif ($i - $averageRating < 1)
+                                        <i class="las la-star-half-alt gold star"></i>
+                                        @else
+                                        <i class="las la-star gray star"></i>
+                                        @endif
+                                        @endfor
+                                        <span class="average">{{ number_format($averageRating, 1) }}</span>
+                                        ({{ $reviews->count()}}件)
+                            </a>
                             @endif
                         </div>
                     </div>
                 </div>
-
-                <div class="modal" id="modal">
-                    <div class="modal__inner">
-                        <div class="close">×</div>
-                        <h4>レビュー</h4>
-                        <div class=" modal__content">
-                            @foreach($reviews as $review)
-                            <div class="review-rating">
-                                <span>
-                                    @for ($i = 0; $i < 5; $i++)
-                                        @if ($i < $review->rating)
-                                        <i class="fa-solid fa-star" style="color: #ffcc00; "></i>
-                                        @else
-                                        <i class="fa-solid fa-star" style="color: #cfd9e2; "></i>
-                                        @endif
-                                        @endfor
-                                </span>
-                                <span class="review-item">{{ $review->created_at->format('Y-m-d') }}</span>
-                            </div>
-                            <div class="review-comment">
-                                <p>{{ $review->comment }}</p>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+                <x-review-modal :ratingPercentages="$ratingPercentages" :restaurant="$restaurant" :reviews="$reviews" :averageRating="$averageRating" />
             </div>
 
 
-            <div class="reservation">
+            <div class=" reservation">
                 <div class="res__container">
                     <div class="res__heading">予約</div>
                     <form class="res__form" action="{{ route('payment.createCheckoutSession') }}" method="post">
@@ -155,6 +140,8 @@
                 const targetModal = document.getElementById(targetModalId);
                 if (targetModal) {
                     targetModal.classList.add('open');
+
+                    sessionStorage.setItem('modalId', targetModalId);
                 }
             });
         });
@@ -163,10 +150,22 @@
                 const modal = button.closest('.modal');
                 if (modal) {
                     modal.classList.remove('open');
+
+                    sessionStorage.removeItem('modalId');
                 }
             });
         });
 
+        window.onload = function() {
+            const modalId = sessionStorage.getItem('modalId');
+
+            if (modalId) {
+                const targetModal = document.getElementById(modalId);
+                if (targetModal) {
+                    targetModal.classList.add('open');
+                }
+            }
+        };
     });
 </script>
 <script src="{{ asset('js/stripe.js') }}" defer></script>

@@ -59,12 +59,12 @@
                                 <a class="modal__button" href="#reviewModal{{$reservation->id}}">
                                     <i class="fa-regular fa-thumbs-up"></i>&nbsp;評価する
                                 </a>
-                                @include('components.review-form-modal',['reservation' => $reservation])
+                                @include('components.review-form-modal',['reservation' => $reservation,'restaurant' => $restaurant])
                                 @elseif($reservation->status == '予約確定')
                                 <a class="modal__button" href="#modal{{$reservation->id}}">
                                     <i class="fas fa-edit"></i>&nbsp;変更する
                                 </a>
-                                @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers])
+                                @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers,'restaurant' => $restaurant])
                                 @endif
                             </div>
                         </div>

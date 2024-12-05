@@ -87,7 +87,6 @@ class ReservationController extends Controller
                 'success_url' => route('payment.success', ['reservationId' => $reservation->id]),
                 'cancel_url' => route('payment.cancel', ['reservationId' => $reservation->id]),
             ]);
-            SendReservationConfirmation::dispatch($reservation);
 
             return response()->json(['id' => $session->id]);
         } catch (\Exception $e) {

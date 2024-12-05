@@ -1,33 +1,72 @@
-<div class="modal {{$errors->hasAny(['rating','comment']) ? 'open' : ' '}}" id="reviewModal{{ $reservation->id }}">
+<div class="modal {{$errors->hasAny(['nickname','rating','comment','title']) ? 'open' : ' '}}" id="reviewModal{{ $reservation->id }}">
     <div class="review-modal__inner">
-        <div class="modal__content">
+        <div class="review-modal__content">
             <a class="close" href="#">×</a>
-            <form class="modal__form" action="{{ route('review', $reservation->id) }}" method="POST">
+            <form class="review-modal__form" action="{{ route('review', $reservation->id) }}" method="POST">
                 @csrf
+                <div class="review-modal__header">
+                    <h4 class="h4">レビューを投稿</h4>
+                </div>
+                <div class="review-modal__header">
+                    <div class="review-modal__image"><img src="{{ asset($restaurant->image) }}" alt=""></div>
+                    <div class="review-modal__restaurant">
+                        <p class="review-modal__p">{{ $restaurant->name }}</p>
+                        <span class="review-modal__p">来店日</span>
+                        <span class="review-modal__p">{{ \Carbon\Carbon::parse($reservation->date)->format('Y-m-d') }}</span>
+                    </div>
+                </div>
+
                 <div class="review-modal__group">
-                    <label class="review-modal__label" for="rating_{{$reservation->id}}">評価&nbsp;<span>※必須</span></label>
-                    <select class="review-modal__input" name="rating" id="rating_{{$reservation->id}}">
-                        <option value="" hidden>選択してください</option>
-                        <option value="5">5 - とても良い</option>
-                        <option value="4">4 - 良い</option>
-                        <option value="3">3 - 普通</option>
-                        <option value="2">2 - 悪い</option>
-                        <option value="1">1 - とても悪い</option>
-                    </select>
+                    <label class="review-modal__label" for="nickname">ニックネーム</label>
+                    <input class="review-modal__input" type="text" name="nickname" id="nickname_{{ $reservation->id }}" value="{{ old('nickname') }}">
+                </div>
+                @error('nickname')
+                <div class="error">{{ $message }}</div>
+                @enderror
+
+                <div class="review-modal__group">
+                    <label class="review-modal__label">評価</label>
+                    <div class="star-rating">
+                        <input type="radio" name="rating" value="1" id="1-star" class="star-input">
+                        <label for="1-star" class="star">&#9733;</label>
+
+                        <input type="radio" name="rating" value="2" id="2-star" class="star-input">
+                        <label for="2-star" class="star">&#9733;</label>
+
+                        <input type="radio" name="rating" value="3" id="3-star" class="star-input">
+                        <label for="3-star" class="star">&#9733;</label>
+
+                        <input type="radio" name="rating" value="4" id="4-star" class="star-input">
+                        <label for="4-star" class="star">&#9733;</label>
+
+                        <input type="radio" name="rating" value="5" id="5-star" class="star-input">
+                        <label for="5-star" class="star">&#9733;</label>
+                    </div>
                 </div>
                 @error('rating')
                 <div class="error">{{ $message }}</div>
                 @enderror
+
+                <div class="review-modal__group">
+                    <label class="review-modal__label" for="title_{{$reservation->id}}">タイトル</label>
+                    <input class="review-modal__input" type="text" name="title" value="{{ old('title') }}" id="title_{{$reservation->id}}"></input>
+                </div>
+                @error('title')
+                <div class="error">
+                    {{ $message }}
+                </div>
+                @enderror
+
                 <div class="review-modal__group">
                     <label class="review-modal__label" for="comment_{{$reservation->id}}">本文</label>
-                    <textarea class="review-modal__textarea" name="comment" id="comment_{{$reservation->id}}" rows="4"></textarea>
+                    <textarea class="review-modal__textarea" name="comment" id="comment_{{$reservation->id}}" rows="4">{{ old('comment')}}</textarea>
                 </div>
                 @error('comment')
                 <div class="error">
                     {{ $message }}
                 </div>
                 @enderror
-                <input class="res-modal__button" type="submit" value="評価を送信">
+                <input class="review-modal__button" type="submit" value="評価を送信">
             </form>
         </div>
     </div>

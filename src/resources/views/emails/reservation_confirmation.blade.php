@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $data['subject'] }}</title>
+    <title>{{ $reservation->subject }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,8 +59,8 @@
             <p>本日はご予約日となります。ご確認ください。</p>
             <p><strong>予約詳細</strong></p>
             <p>店舗: {{ $reservation->restaurant->name }}</p>
-            <p>予約日: {{ $reservation->date }}</p>
-            <p>時間: {{ $reservation->time }}</p>
+            <p>予約日: {{ \Carbon\Carbon::parse($reservation->date)->format('Y-m-d') }}</p>
+            <p>時間: {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</p>
             <p>人数: {{ $reservation->number }}</p>
         </div>
         <div class="footer">

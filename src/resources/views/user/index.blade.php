@@ -4,6 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
 @endsection
 
@@ -44,7 +45,24 @@
                 </div>
                 <div class="card__content">
                     <div class="card__heading">
-                        {{ $restaurant->name }}
+                        <span>{{ $restaurant->name }}</span>
+                        <a class="average">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <=floor($restaurant->average_rating))
+                                <i class="las la-star star-icon gold"></i>
+                                @elseif ($i - $restaurant->average_rating < 1)
+                                    <i class="las la-star-half-alt gold"></i>
+                                    @else
+                                    <i class="las la-star star-icon" style="color: #bbb;"></i>
+                                    @endif
+                                    @endfor
+                                    <span class="average" style="font-size: 70%;">
+                                        ({{ $restaurant->reservations->sum(function ($reservation) {
+                                        return $reservation->review ? $reservation->review->count() : 0 ;
+                                    }) }})
+                                    </span>
+
+                        </a>
                     </div>
                     @php
                     preg_match('/^(東京都|北海道|.{2,3}県|.{2}府)/u', $restaurant->address, $matches);
@@ -83,7 +101,6 @@
         const areaOption = document.querySelector('.responsive-area');
         const genreOption = document.querySelector('.responsive-genre');
 
-        // ウィンドウの幅が480px以下の場合のみテキストを変更
         if (window.innerWidth <= 480) {
             areaOption.textContent = "area";
             genreOption.textContent = "genre";

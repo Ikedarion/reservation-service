@@ -104,14 +104,38 @@ body {
 }
 
 .card__content {
-    padding: 0px 15px;
+    padding: 0px 10px;
     width: 100%;
 }
 
 .card__heading {
-    font-size: 16px;
+    font-size: 13px;
+    margin-bottom: 2px;
     font-weight: bold;
     color: #414141;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.average {
+    font-size: 90%;
+    margin-right: 8px;
+    color: #707070;
+    display: flex;
+    gap: 2px;
+}
+
+.star-icon {
+    margin-left: -4px;
+}
+
+.gold {
+    color: rgb(255, 191, 0);
+}
+
+.gray {
+    color: #ddd;
 }
 
 .card__tag {
@@ -135,7 +159,7 @@ body {
     text-align: center;
     background-color: rgba(36, 98, 244, 0.951);
     color: white;
-    font-size: 12px;
+    font-size: 10px;
     padding: 3px 12px;
     border-radius: 3px;
     margin: 5px 0 2px 0;
@@ -148,7 +172,7 @@ body {
 
 .heart {
     position:absolute;
-    font-size: 27px;
+    font-size: 25px;
     bottom: 2.5%;
     right: 5%;
     color: #d8d8d8;
@@ -156,7 +180,7 @@ body {
 
 .heart-click {
     position: absolute;
-    font-size: 27px;
+    font-size: 25px;
     bottom: 2.5%;
     right: 5%;
     color: hsl(0, 95%, 54%);
@@ -185,6 +209,10 @@ body {
         width: 50%;
     }
 
+    .card__heading {
+        font-size: 13px;
+    }
+
     .card__container {
         grid-template-columns: repeat(2, 1fr);
         gap: 22px;
@@ -196,6 +224,15 @@ body {
 
     .form {
         height: 35px;
+    }
+
+    .details__link {
+        font-size: 9px;
+        padding: 3px 10px;
+    }
+
+    .average {
+        font-size: 90%;
     }
 
 }
@@ -244,7 +281,7 @@ body {
     }
 
     .card__heading {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .card__tag {
@@ -258,16 +295,16 @@ body {
         }
 
     .details__link {
-        font-size: 10px;
+        font-size: 8px;
         padding: 3px 10px;
         }
 
     .heart {
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .heart-click {
-        font-size: 24px;
+        font-size: 23px;
     }
 }
 

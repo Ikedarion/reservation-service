@@ -42,10 +42,10 @@ class VerifyEmailNotification extends VerifyEmail
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('メールアドレス認証のお願い')
-                    ->line('メールアドレスの認証を完了するために、以下のリンクをクリックしてください。')
-                    ->line('このリンクの有効期限は24時間です。')
-                    ->action('認証する', $this->verificationUrl($notifiable));
+            ->subject('メールアドレス認証のお願い')
+            ->line('メールアドレスの認証を完了するために、以下のリンクをクリックしてください。')
+            ->line('このリンクの有効期限は24時間です。')
+            ->action('認証する', $this->verificationUrl($notifiable));
     }
 
     /**
