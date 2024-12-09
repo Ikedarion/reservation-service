@@ -39,7 +39,17 @@ class RegisterUserController extends Controller
             if ($user->email_verified_at === null) {
                 return redirect()->route('verification.notice');
             }
-            return redirect()->route('home');
+            $role = $user->role; // ユーザーの役割を取得
+
+            switch ($role) {
+                case '管理者':
+                    return redirect()->route('home');
+                case '店舗代表者':
+                    return redirect()->route('manager.index');
+                case 'ユーザー':
+                default:
+                    return redirect()->route('home');
+            }
         }
 
         return back()->with('error', 'このメールアドレスは登録されていません。');

@@ -1,6 +1,6 @@
 html,
 body {
-    background-color: #e8e8e8;
+    background-color: #f4f4f4;
     height: 100%;
 }
 
@@ -37,11 +37,9 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0);
-    /* 半透明の背景 */
     z-index: 1000;
 }
 
-/* モーダル内のコンテンツ */
 .modal__inner {
     background-color: transparent;
     padding: 0px 30px;
@@ -149,7 +147,7 @@ body {
 }
 
 .create-form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     width: 100%;
 }
 
@@ -185,7 +183,7 @@ body {
 }
 
 .create-form__text {
-    height: 25px;
+    height: 30px;
     width: 97%;
 }
 

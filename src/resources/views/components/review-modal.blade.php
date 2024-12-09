@@ -1,11 +1,10 @@
 <div class="modal" id="modal">
     <div class="modal__inner">
-        <div class="close">×</div>
         <div class="modal__header">レビュー</div>
         <div class="modal__content">
             <div class="modal__heading">
                 <div class="modal__heading-items">
-                    <div class="modal-text">{{ number_format($averageRating, 2) }}</div>
+                    <div class="modal__text">{{ number_format($averageRating, 2) }}</div>
                     <div class="review-count">({{ $reviews->count()}}件)</div>
                     <div class="star-rating">
                         @for ($i = 1; $i <= 5; $i++)
@@ -21,17 +20,21 @@
                 </div>
 
                 <div class="rating-distribution">
-                    @foreach ($ratingPercentages as $rating => $percentage)
+                    @foreach ($ratingCounts as $rating => $count)
                     <div class="rating-item">
                         <div class="rating-item-left">
                             <span class="star-rating">★{{ $rating }}</span>
                         </div>
                         <div class="rating-item-right">
                             <div class="rating-bar">
-                                <div class="bar" style="width: {{ $percentage }}%"></div>
+                                @if ($totalReviews > 0)
+                                <div class="bar" style="width: {{ ($count / $totalReviews) * 100 }}%"></div>
+                                @else
+                                <div class="bar" style="width: 0%"></div>
+                                @endif
                             </div>
                         </div>
-                        <p class="percentage">{{ $percentage }}%</p>
+                        <p class="percentage">{{ $count }}件</p>
                     </div>
                     @endforeach
                 </div>
@@ -67,9 +70,9 @@
                         <span>
                             @for ($i = 0; $i < 5; $i++)
                                 @if ($i < $review->rating)
-                                <i class="fa-solid fa-star gold"></i>
+                                <i class="las la-star gold" style="margin-right: -3px; font-size: 12.5px"></i>
                                 @else
-                                <i class="fa-solid fa-star gray"></i>
+                                <i class="las la-star gray" style="margin-right: -3px; font-size: 12.5px"></i>
                                 @endif
                                 @endfor
                         </span>
@@ -79,6 +82,9 @@
                     <p class="review-title">{{ $review->title }}</p>
                     <div class="review-comment">
                         <p>{{ $review->comment }}</p>
+                    </div>
+                    <div class="report">
+                        <p class="report-link">不適切なレビューを報告</p>
                     </div>
                 </div>
                 @endforeach

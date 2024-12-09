@@ -1,26 +1,16 @@
 html,
 body {
-    background-color: #f5f5f7;
-    height: 100%;
-}
-
-.header {
-    position: relative;
-}
-
-.header__item {
-    margin: 0 46% 0 0;
+    background-color: #f7f7f7;
+    padding-left: 28px;
 }
 
 .reservation__heading {
-    text-shadow: none;
-    color: #58585d;
-    font-size: 17px;
-    white-space: nowrap;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-top: 60px;
+    padding-right: 27px;
+    display: flex;
     justify-content: center;
-    position: absolute;
-    top: 21px;
-    left: 46%;
 }
 
 .message {
@@ -58,8 +48,8 @@ body {
 .reservation__content {
     max-width: 1400px;
     height: 100%;
-    padding: 0 6% 2% 6%;
-    color: #55555c;
+    padding: 0 54px 1.4% 0;
+    color: #4a4d54;
 }
 
 .reservation__inner {
@@ -70,14 +60,14 @@ body {
 .form__group {
     width: 100%;
     height: 135px;
-    margin: 20px auto;
+    margin: 20px auto 15px;
     border-collapse: collapse;
     table-layout: fixed;
-    background-color: #e9ecef;
+    background-color: #eeeff0;
     padding: 5px 0px 0px;
     position: relative;
-    border-radius: 5px;
-    border: 1px solid #e7e4e4;
+    border-radius: 3px;
+    border: 1px solid #e4e5e7;
     min-width: 740px;
 }
 
@@ -112,7 +102,7 @@ body {
     font-size: 12px;
     margin-bottom: 3px;
     white-space: nowrap;
-    font-weight: bold;
+    color: #383b42;
 }
 
 .res-form__search {
@@ -133,13 +123,14 @@ body {
     width: 100%;
     box-sizing: border-box;
     border-radius: 3px;
-    border: 1px solid #d2d2d2;
+    border: 1px solid #d6d8dc;
+    color: #707072 !important;
 }
 
 .res-form__submit {
-    background: linear-gradient(to top, #737f89, #96a2ac);
+    background: linear-gradient(to bottom, #3a669e, #2d4e7a);
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.238);
-    color: white;
+    color: white !important;
     border: none;
     font-size: 12px;
     margin-bottom: 1px;
@@ -152,11 +143,11 @@ body {
     color: #707070;
     margin-bottom: 1px;
     border-radius: 3px;
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.238);
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.143);
 }
 
 .res-form__submit:hover {
-    background: linear-gradient(to bottom, #737f89, #77838c);
+    background: linear-gradient(to bottom, #345c91, #2d4e7a);
 }
 
 .res-form__reset:hover {
@@ -167,32 +158,35 @@ body {
     width: 100%;
     min-width: 670px;
     border-collapse: collapse;
-    margin: 20px auto;
-    border: 1px solid #eaebf3;
+    margin: 17px auto;
+    border: 1px solid #eeeff1;
     font-size: 15px;
     border-radius: 3px;
     white-space: nowrap;
 }
 
+
 .table__header {
-    background-color: #e9ecef;
-    padding: 13px 15px;
+    background-color: #eeeff0;
+    padding: 15px 15px;
     text-align: center;
-    font-weight: bold;
-    border-top: 1px solid #e0e0e0;
+    font-size: 13px;
+    border-top: 1px solid #e4e5e7;
+    letter-spacing: 1px;
+    color: #4a4d54;
 }
 
 .table__row {
-    background-color: #fcfdff;
-    border-bottom: 1px solid #dfdfdf;
+    background-color: #fefefe;
+    border-bottom: 1px solid #e4e5e7;
     transition: all 0.3s ease;
 }
 
 .res-table tr:hover {
-    background-color: #f2f6fe;
+    background-color: #f1f4fa;
     color: #40434a;
     transform: scale(1.01);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.059);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.082);
     transition: all 0.3s ease;
 }
 
@@ -209,6 +203,7 @@ body {
 .table__item {
     padding: 20px 25px;
     text-align: center;
+    font-size: 13px;
 }
 
 .table__item:first-child,
@@ -238,7 +233,7 @@ body {
 }
 
 .reserved {
-    background-color: #dcecdf;
+    background-color: #e4f2e7;
     color: #155724;
 }
 
@@ -248,7 +243,7 @@ body {
 }
 
 .visited {
-    background-color: #e2e6ed;
+    background-color: #ecf0f7;
     color: #45596c;
 }
 
@@ -257,6 +252,7 @@ body {
     border: none;
     background-color: transparent;
     padding-left: 20px;
+    color: #394162;
 }
 
 .sidebar {
@@ -291,7 +287,7 @@ body {
 }
 
 .fas.fa-arrow-left {
-    color: #5b5b5b;
+    color: #394162;
 }
 
 .sidebar-close:hover,
@@ -343,7 +339,7 @@ body {
 .sidebar-submit {
     margin-top: 55px;
     padding: 6px 35px;
-    background: linear-gradient(to top, #737f89, #96a2ac);
+    background: linear-gradient(to bottom, #3a669e, #2d4e7a);
     box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.068);
     color: #ffffff;
     border: none;
@@ -393,3 +389,5 @@ body {
     color: #FFF;
     font-size: 14px;
 }
+
+

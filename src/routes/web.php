@@ -20,7 +20,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'roleManager'])->group(function () {
     Route::get('/done', [UserController::class, 'showDone'])->name('done');
     Route::post('/favorite/{id}', [UserController::class, 'favorite'])->name('favorite');
     Route::get('/search', [UserController::class, 'search'])->name('search');
@@ -31,21 +31,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/update/{id}', [UserController::class, 'update'])->name('update');
     Route::post('/review/{id}', [UserController::class, 'storeReview'])->name('review');
 
-
     Route::post('/create-checkout-session', [ReservationController::class, 'createCheckoutSession'])->name('payment.createCheckoutSession');
     Route::get('reservation/success/{reservationId}', [ReservationController::class, 'success'])->name('payment.success');
     Route::get('reservation/cancel/{reservationId}', [ReservationController::class, 'cancel'])->name('payment.cancel');
 
-
-
     Route::get('/reservation/verify/{id}', [ReservationController::class, 'generateQrCode'])->name('reservation.QrCode');
-    Route::get('/reservation/scan', [ReservationController::class, 'showQrScanner'])->name('reservation.scan');
-    Route::post('/reservation/verify/confirm', [ReservationController::class, 'verifyReservation'])->name('reservation.verify');
 
 
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth','verified','roleManager'])->group(function () {
     Route::get('/admin/user', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
@@ -56,7 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth','verified','roleManager'])->group(function () {
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
     Route::get('/manager/search', [ManagerController::class, 'search'])->name('manager.search');
     Route::patch('/manager/update/{id}', [ManagerController::class, 'update'])->name('manager.update');
@@ -66,7 +61,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/manager/store', [ManagerController::class, 'store'])->name('manager.store');
     Route::patch('/manager/restaurant/update/', [ManagerController::class, 'updateDetail'])->name('manager.updateDetail');
     Route::get('/manager/reviews', [ManagerController::class, 'showReviews'])->name('manager.showReviews');
+    Route::get('/manager/reviews/filter', [ManagerController::class, 'filter'])->name('review.filter');
+    Route::get('/reservation/scan', [ReservationController::class, 'showQrScanner'])->name('reservation.scan');
+    Route::post('/reservation/verify/confirm', [ReservationController::class, 'verifyReservation'])->name('reservation.verify');
+    Route::patch('/reviews/reply/{id}', [ManagerController::class, 'reply'])->name('reviews.reply');
 });
+
 
 Route::get('/menu/user', [UserController::class, 'showUserMenu']);
 Route::get('/', [UserController::class, 'index'])->name('home');
@@ -85,10 +85,5 @@ Route::get('/thanks', [UserController::class, 'showThanks'])->name('thanks');
 
 
 
-
-
-Route::get('/import', [ImageController::class, 'import'])->name('restaurants.import');
-Route::post('/import/file', [ImageController::class, 'importCsv'])->name('restaurants.importCsv');
-Route::post('/upload/image', [ImageController::class, 'store'])->name('image.store');
 
 

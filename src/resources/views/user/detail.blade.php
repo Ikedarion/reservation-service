@@ -59,11 +59,11 @@
                         </div>
                     </div>
                 </div>
-                <x-review-modal :ratingPercentages="$ratingPercentages" :restaurant="$restaurant" :reviews="$reviews" :averageRating="$averageRating" />
+                <x-review-modal :ratingCounts="$ratingCounts" :restaurant="$restaurant" :reviews="$reviews" :averageRating="$averageRating" :totalReviews="$totalReviews" />
             </div>
 
 
-            <div class=" reservation">
+            <div class="reservation">
                 <div class="res__container">
                     <div class="res__heading">予約</div>
                     <form class="res__form" action="{{ route('payment.createCheckoutSession') }}" method="post">
@@ -72,7 +72,7 @@
                         <input class="res__calender" type="date" id="res-date" name="date" value="{{ old('date') }}">
                         <div class="error" id="error-date"></div>
 
-                        <input class="res__input" type="time" id="res-time" name="time" value="{{ old('time') }}" max="23:00" min="06:00">
+                        <input class="res__input" type="time" id="res-time" name="time" value="{{ old('time') }}" max="22:00" min="09:00">
                         <div class="error" id="error-time"></div>
 
                         <select class="res__select" name="number" id="res-number">
@@ -132,6 +132,7 @@
 
         const reviewLinks = document.querySelectorAll('.review');
         const closeButtons = document.querySelectorAll('.close');
+        const Modals = document.querySelectorAll('.modal');
 
         reviewLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -145,12 +146,10 @@
                 }
             });
         });
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const modal = button.closest('.modal');
-                if (modal) {
+        Modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
                     modal.classList.remove('open');
-
                     sessionStorage.removeItem('modalId');
                 }
             });

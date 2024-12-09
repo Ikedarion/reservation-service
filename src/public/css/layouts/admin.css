@@ -7,58 +7,73 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
 }
 
+/* headerを左端に縦に細長く配置 */
+/* ハンバーガーメニューの位置を上に配置 */
 .header {
-    height: 30px;
-    max-width: 1400px;
-    padding: 40px 5% 0px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /* 画面の高さに合わせて縦長に */
+    width: 60px;
+    /* 幅を狭く設定 */
+    background-color: transparent;
     display: flex;
-    text-shadow: 1.5px 2px 2px #babdd1;
-    justify-content: space-between;
+    flex-direction: column;
+    /* 要素を縦に並べる */
     align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    /* 上部に少し余白を加える */
+    /*box-shadow: 4px 0 8px rgb(0, 0, 0, 0.1);*/
+    /* メニューの影を追加 */
+    z-index: 100;
 }
 
-.app {
-    display: flex;
-    align-items: center;
+/* メニューを上に配置 */
+.menu {
+    margin-top: 0;
+    /* 上部に余白をなくして、最上部に配置 */
 }
+
 
 .square {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 3px;
-    background-color: #0854d8f7;
+    background-color: #1c5ac6;
     transition: background-color 0.3s;
     position: relative;
     box-shadow: 1.5px 2px 2px #babdd1;
     display: inline-block;
-}
-
-.h1 {
-    color: #0854d8f7;
-    padding-left: 1.5%;
-    margin: -7px 0px 0px 10px;
-    font-size: 28px;
-    display: inline-block;
-}
-
-.square:hover {
-    background-color: #0b48ca;
-    box-shadow: 1.5px 2px 2px #adb0c3;
+    margin: 0 0 10px 15px;
+    /* メニューと下のコンテンツの間隔を調整 */
 }
 
 .line {
-    height: 1.5px;
+    height: 1.7px;
     background-color: white;
     position: absolute;
     left: 5px;
 }
 
-.long { width: 30%; top: 7px; }
-.medium { width: 60%; top: 13px; }
-.short { width: 15%; top: 20px; }
+.long {
+    width: 14px;
+    top: 7px;
+    /* 上からの位置を調整 */
+}
 
+.medium {
+    width: 19px;
+    top: 13px;
+    /* 上からの位置を調整 */
+}
 
-
+.short {
+    width: 9px;
+    top: 19px;
+    /* 上からの位置を調整 */
+}
 
 .dropdown-menu {
     display: none;
@@ -67,9 +82,9 @@ body {
     left: -220px;
     height: 100%;
     width: 220px;
-    box-shadow: 4px 0 8px rgb(0,0,0,0.1);
+    box-shadow: 4px 0 8px rgb(0, 0, 0, 0.1);
     text-align: left;
-    background-color: #ffffff;
+    background-color: #474ce8;
     padding: 20px;
     z-index: 1000;
     transform: translateX(0);
@@ -128,3 +143,4 @@ body {
 .admin-form input:hover {
     background-color: #00376b;
 }
+

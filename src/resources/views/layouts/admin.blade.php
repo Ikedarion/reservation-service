@@ -5,10 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rese</title>
-    <link rel="stylesheet" href="{{ asset('css/layouts/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/layouts/admin.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     @yield('css')
 </head>
+
+<style>
+    .h1 {
+        color: #0854d8f7;
+        padding-left: 1.5%;
+        margin: -7px 0px 0px 10px;
+        font-size: 28px;
+        display: inline-block;
+    }
+</style>
 
 <body>
     <header class="header">
@@ -26,7 +36,6 @@
                 </a>
                 <div class="dropdown-menu">
                     <div class="admin-item">
-                        <h2 class="h2">Rese</h2>
                         <a class="admin__link" href="/">ホーム</a>
                         <a class="admin__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
                         <a class="admin__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
@@ -60,26 +69,9 @@
                     </div>
                 </div>
             </div>
-            @elseif(auth()->user()->role === 'ユーザー')
-            <a href="@yield('link_url')" class="user-menu__link">
-                <div class="square">
-                    <div class="line long"></div>
-                    <div class="line medium"></div>
-                    <div class="line short"></div>
-                </div>
-            </a>
             @endif
-            @else
-            <a href="@yield('link_url')" class="user-menu__link">
-                <div class="square">
-                    <div class="line long"></div>
-                    <div class="line medium"></div>
-                    <div class="line short"></div>
-                </div>
-            </a>
             @endif
 
-            <h1 class="h1">Rese</h1>
         </div>
         <div class="header__item">@yield('item')</div>
     </header>

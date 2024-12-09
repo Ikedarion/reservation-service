@@ -1,7 +1,6 @@
 <div class="modal {{ $errors->hasAny(['date_' . $reservation->id, 'time_' . $reservation->id, 'number_' . $reservation->id]) ? 'open' : ' ' }}" id="modal{{$reservation->id}}">
     <div class="modal__inner">
         <div class="modal__content">
-            <a class="close" href="#">×</a>
             <form class="modal__form" action="{{ route('update',$reservation->id) }}" method="post">
                 @csrf
                 @method('PATCH')
@@ -21,7 +20,7 @@
                 @enderror
                 <div class="modal__group">
                     <label class="modal__label" for="time_{{$reservation->id}}">Time</label>
-                    <input class="modal__input" type="time" id="time_{{$reservation->id}}" name="time_{{$reservation->id}}" value="{{ old('time_' . $reservation->id, \Carbon\Carbon::parse($reservation->date)->format('H:i')) }}" max="23:00" min="06:00">
+                    <input class="modal__input" type="time" id="time_{{$reservation->id}}" name="time_{{$reservation->id}}" value="{{ old('time_' . $reservation->id, \Carbon\Carbon::parse($reservation->date)->format('H:i')) }}" max="22:00" min="09:00">
                 </div>
                 @error('time_' . $reservation->id)
                 <div class="error">

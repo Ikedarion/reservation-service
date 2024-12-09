@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('link_url','/menu/user')
 
@@ -82,9 +82,8 @@
             <div id="preview-card" style="display: none;" class="preview__content">
                 <div class="new__card">
                     <div class="header__item">
-                        <p class="home__link" href="">
-                            <
-                                </p>
+                        <a id="close-preview-btn" class="home__link">
+                            <</a>
                                 <div class="card__heading">
                                     <p id="preview-name"></p>
                                 </div>
@@ -104,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-                <a id="close-preview-btn" class="close-preview">閉じる</a>
             </div>
         </div>
         @endif

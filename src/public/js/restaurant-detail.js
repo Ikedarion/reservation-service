@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         autoTagInput.value = autoTags.join(" ");
     }
 
-    // プレビュー表示
     function showPreview(event) {
         event.preventDefault();
         document.getElementById("preview-name").textContent = document.getElementById("name").value;

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('link_url','/menu/user')
 
@@ -7,11 +7,6 @@
 <link rel="stylesheet" href="{{ asset('css/manager/reservation.css') }}">
 @endsection
 
-@section('item')
-<h4 class="reservation__heading">
-    予約一覧
-</h4>
-@endsection
 
 @section('content')
 <div class="reservation__content">
@@ -26,6 +21,9 @@
             {{ session('error')}}
         </div>
         @endif
+        <div class="reservation__heading">
+            予約一覧
+        </div>
         <div class="form__group">
             <form class="res-form" action="{{ route('manager.search') }}" method="get">
                 <div class="res-form__row">
@@ -135,7 +133,6 @@
             </tr>
             <div class="sidebar {{ $errors->hasAny(['date_' . $reservation->id, 'time_' . $reservation->id, 'number_' . $reservation->id, 'status_' . $reservation->id]) ? 'open' : '' }}" id="sidebar{{ $reservation->id }}">
                 <div class="sidebar-content">
-                    <span class="sidebar-close" data-reservation-id="{{ $reservation->id }}"><i class="fas fa-arrow-left"></i></span>
                     <h4 class="sidebar-h4">編集</h4>
                     <form class="sidebar-form" action="{{ route('manager.update',$reservation->id)}}" method="post">
                         @csrf
@@ -219,16 +216,13 @@
             });
         });
 
-        const closeButtons = document.querySelectorAll('.sidebar-close');
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const reservationId = this.getAttribute('data-reservation-id');
-                const sidebar = document.getElementById('sidebar' + reservationId);
-                if (sidebar) {
-                    sidebar.classList.remove('open');
-                }
-            });
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.sidebar.open');
+            if (sidebar && !sidebar.contains(event.target) && !event.target.closest('.openSidebarButton')) {
+                sidebar.classList.remove('open');
+            }
         });
+
     });
 
     function confirmDelete(message) {

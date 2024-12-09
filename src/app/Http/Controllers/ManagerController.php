@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Restaurant;
+use App\Models\Review;
 use App\Http\Requests\ManagerReservationRequest;
 use App\Http\Requests\CreateRestaurantRequest;
 use Carbon\Carbon;
@@ -181,6 +182,65 @@ class ManagerController extends Controller
 
     public function showReviews()
     {
-        return view('/manager/reviews');
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id',$userId)->first();
+
+        $reviews = $restaurant->reservations()
+        ->with('review')->get()->pluck('review')->filter()
+        ->sortByDesc('created_at');
+        $averageRating = $reviews->avg('rating');
+
+        $ratingCounts = $reviews->groupBy('rating')
+                        ->map(fn($group) => $group->count());
+        $totalReviews = $reviews->count();
+        $ratingCounts = collect([5, 4, 3, 2, 1])->mapWithKeys(function ($rating) use ($ratingCounts) {
+            return [$rating => $ratingCounts->get($rating, 0)];
+        });
+
+        return view('/manager/reviews',compact('reviews', 'ratingCounts', 'totalReviews', 'averageRating','restaurant'));
+    }
+
+    public function filter(Request $request)
+    {
+        $userId = Auth::id();
+        $restaurant = Restaurant::where('user_id', $userId)->first();
+
+        $reviews = $restaurant->reservations()
+        ->with('review')->get()->pluck('review')->filter()
+        ->sortByDesc('created_at');
+        $averageRating = $reviews->avg('rating');
+
+        $ratingCounts = $reviews->groupBy('rating')
+            ->map(fn($group) => $group->count());
+        $totalReviews = $reviews->count();
+        $ratingCounts = collect([5, 4, 3, 2, 1])->mapWithKeys(function ($rating) use ($ratingCounts) {
+            return [$rating => $ratingCounts->get($rating, 0)];
+        });
+        $reviews = Review::query()
+            ->withStarRating($request->star_rating)
+            ->sortBy($request->sort_by)
+            ->status($request->status)
+            ->keywordSearch($request->keyword)
+            ->dateSearch($request->start_date, $request->end_date)
+            ->get();
+
+        return view('/manager/reviews', compact('reviews', 'ratingCounts', 'totalReviews', 'averageRating', 'restaurant'));
+    }
+
+    public function reply(Request $request, $id)
+    {
+        $request->validate([
+            'reply_' . $id => 'required|string|max:255',
+        ],[
+            'reply_' . $id . '.required' => '返信内容は必須です。',
+            'reply_' . $id . '.string' => '返信内容は文字列でなければなりません。',
+            'reply_' . $id . '.max' => '返信内容は255文字以内で入力してください。',
+        ]);
+
+        $review = Review::find($id);
+        $review->update([
+            'reply' => $request->input('reply_' . $id),
+        ]);
+        return redirect()->back()->with('success','返信を送信しました。');
     }
 }

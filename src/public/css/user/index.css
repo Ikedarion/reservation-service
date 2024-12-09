@@ -104,7 +104,7 @@ body {
 }
 
 .card__content {
-    padding: 0px 10px;
+    padding: 5px 5%;
     width: 100%;
 }
 
@@ -112,7 +112,7 @@ body {
     font-size: 13px;
     margin-bottom: 2px;
     font-weight: bold;
-    color: #414141;
+    color: #4e4e4e;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,7 +120,7 @@ body {
 
 .average {
     font-size: 90%;
-    margin-right: 8px;
+    margin-right: 10px;
     color: #707070;
     display: flex;
     gap: 2px;
@@ -146,6 +146,7 @@ body {
 .tag-p {
     font-size: 10px;
     margin-right: 2%;
+    color: #4e4e4e;
 }
 
 .card__content-item {
@@ -164,6 +165,7 @@ body {
     border-radius: 3px;
     margin: 5px 0 2px 0;
     cursor: pointer;
+    margin-top: 15%;
 }
 
 .details__link:active {

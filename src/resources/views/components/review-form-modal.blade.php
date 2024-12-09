@@ -1,7 +1,6 @@
 <div class="modal {{$errors->hasAny(['nickname','rating','comment','title']) ? 'open' : ' '}}" id="reviewModal{{ $reservation->id }}">
     <div class="review-modal__inner">
         <div class="review-modal__content">
-            <a class="close" href="#">×</a>
             <form class="review-modal__form" action="{{ route('review', $reservation->id) }}" method="POST">
                 @csrf
                 <div class="review-modal__header">
@@ -27,19 +26,19 @@
                 <div class="review-modal__group">
                     <label class="review-modal__label">評価</label>
                     <div class="star-rating">
-                        <input type="radio" name="rating" value="1" id="1-star" class="star-input">
+                        <input type="radio" name="rating" value="5" id="1-star" class="star-input">
                         <label for="1-star" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="2" id="2-star" class="star-input">
+                        <input type="radio" name="rating" value="4" id="2-star" class="star-input">
                         <label for="2-star" class="star">&#9733;</label>
 
                         <input type="radio" name="rating" value="3" id="3-star" class="star-input">
                         <label for="3-star" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="4" id="4-star" class="star-input">
+                        <input type="radio" name="rating" value="2" id="4-star" class="star-input">
                         <label for="4-star" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="5" id="5-star" class="star-input">
+                        <input type="radio" name="rating" value="1" id="5-star" class="star-input">
                         <label for="5-star" class="star">&#9733;</label>
                     </div>
                 </div>
@@ -66,7 +65,7 @@
                     {{ $message }}
                 </div>
                 @enderror
-                <input class="review-modal__button" type="submit" value="評価を送信">
+                <input class="review-modal__button" type="submit" value="送信する">
             </form>
         </div>
     </div>

@@ -15,7 +15,7 @@ html {
 }
 
 .message--success {
-    background-color: #0fa114f2;
+    background-color: #0a8a0ff2;
 }
 
 .message--error {
@@ -58,7 +58,7 @@ html {
 .mail__header {
     text-align: center;
     margin: 0px 24px 20px 0;
-    color: #5b636f;
+    color: #394162;
     font-size: 16px;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
@@ -71,8 +71,8 @@ html {
 .checkboxes__button {
     width: 160px;
     padding: 6px 16px;
-    background-color: #e2e8f0;
-    border: 1px solid #cbd3da;
+    background-color: #e9ecf1;
+    border: 1px solid #bec0cc;
     color: #4b5563;
     border-radius: 4px;
     font-size: 13px;
@@ -82,7 +82,7 @@ html {
 }
 
 .checkboxes__button:hover {
-    background-color: #cbd5e1;
+    background-color: #d9dee3;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -106,7 +106,7 @@ html {
     align-items: center;
     gap: 12px;
     margin-bottom: 16px;
-    color: #374151;
+    color: #394162;
     font-size: 14px;
 }
 
@@ -150,19 +150,19 @@ html {
     font-weight: bold;
     margin: 50px 0 5px;
     font-size: 14px;
-    color: #5c6776;
+    color: #394162;
 }
 
 .form__input,
 .form__textarea {
     width: 95%;
     padding: 10px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #bec0cc;
     border-radius: 3px;
     font-size: 14px;
     color: #111827;
     margin-top: 5px;
-    background-color: #ffffff;
+    background-color: #fafafa;
     transition: border-color 0.3s;
 }
 
@@ -186,7 +186,7 @@ html {
 .form__submit {
     width: 100%;
     padding: 12px;
-    background-color: #025fc3;
+    background: linear-gradient(to bottom, #3d86da, #2f5fa3);
     color: #ffffff;
     border: none;
     border-radius: 3px;
@@ -197,7 +197,7 @@ html {
 }
 
 .form__submit:hover {
-    background-color: #054c99;
+    background: linear-gradient(to top, #2d67a8, #2f5fa3);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 

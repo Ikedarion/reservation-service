@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RoleMiddleware
+class RoleManager
 {
     /**
      * Handle an incoming request.
@@ -14,13 +15,18 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+
+
+    public function handle(Request $request, Closure $next)
     {
-        // ユーザーがログインしていない、または指定されたロールが一致しない
-        if (!auth()->check() || auth()->user()->role !=$role) {
-            return redirect('/');
+        $roles = ['店舗代表者', '管理者'];
+
+        if (Auth::check() && in_array(Auth::user()->role, $roles)) {
+            return $next($request);
         }
 
-        return $next($request);
+        return abort(403, 'Unauthorized action.');
     }
+
+
 }

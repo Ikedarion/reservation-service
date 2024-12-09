@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('link_url','/menu/user')
 
@@ -123,12 +123,10 @@
             <div id="preview-card" style="display: none;" class="preview__content">
                 <div class="new__card">
                     <div class="header__item">
-                        <p class="home__link" href="">
-                            <
-                                </p>
-                                <div class="card__heading">
-                                    <p id="preview-name"></p>
-                                </div>
+                        <a id="close-preview-btn" class="home__link"><</a>
+                        <div class="card__heading">
+                            <p id="preview-name"></p>
+                        </div>
                     </div>
                     <div class="card__inner">
                         <div class="card__image" id="preview-image" data-image="{{ $restaurant->image ?? 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg' }}">
@@ -145,7 +143,6 @@
                         </div>
                     </div>
                 </div>
-                <a id="close-preview-btn" class="close-preview">閉じる</a>
             </div>
         </div>
     </div>

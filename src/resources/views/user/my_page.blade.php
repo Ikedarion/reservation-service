@@ -54,15 +54,16 @@
 
                         <div class="res__title">
                             <i class="fa-solid fa-thumbtack"></i>予約&nbsp;{{ $loop->iteration }}
+                            
                             <div class="table__header">
                                 @if($reservation->status === '来店済み')
                                 <a class="modal__button" href="#reviewModal{{$reservation->id}}">
-                                    <i class="fa-regular fa-thumbs-up"></i>&nbsp;評価する
+                                    レビューを書く
                                 </a>
                                 @include('components.review-form-modal',['reservation' => $reservation,'restaurant' => $restaurant])
                                 @elseif($reservation->status == '予約確定')
                                 <a class="modal__button" href="#modal{{$reservation->id}}">
-                                    <i class="fas fa-edit"></i>&nbsp;変更する
+                                    <i class="fa-solid fa-pencil"></i>&nbsp;変更する
                                 </a>
                                 @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers,'restaurant' => $restaurant])
                                 @endif
@@ -174,12 +175,11 @@
             });
         });
 
-        const closeButtons = document.querySelectorAll('.close');
-        closeButtons.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const modal = link.closest('.modal');
-                if (modal) {
+        const Modals = document.querySelectorAll('.modal');
+
+        Modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
                     modal.classList.remove('open');
                 }
             });

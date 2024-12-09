@@ -94,15 +94,12 @@ class UserController extends Controller
 
         $ratingCounts = $reviews->groupBy('rating')->map(fn($group) => $group->count());
         $totalReviews = $reviews->count();
-        $ratingPercentages = [];
 
-        for ($i = 5; $i >= 1; $i--) {
-            $ratingPercentages[$i] = $totalReviews > 0
-                ? round(($ratingCounts[$i] ?? 0) / $totalReviews * 100, 1)
-                : 0;
-        }
+        $ratingCounts = collect([5, 4, 3, 2, 1])->mapWithKeys(function ($rating) use ($ratingCounts) {
+            return [$rating => $ratingCounts->get($rating, 0)];
+        });
 
-        return view('user/detail', compact('favorite','restaurant','numbers','reviews','averageRating', 'ratingPercentages'));
+        return view('user/detail', compact('favorite', 'restaurant', 'numbers', 'reviews', 'averageRating', 'ratingCounts' ,'totalReviews'));
     }
 
     public function filter(Request $request,$id)
@@ -120,16 +117,14 @@ class UserController extends Controller
         $totalReviews = $reviews->count();
         $ratingPercentages = [];
 
-        for ($i = 5; $i >= 1; $i--) {
-            $ratingPercentages[$i] = $totalReviews > 0
-                ? round(($ratingCounts[$i] ?? 0) / $totalReviews * 100, 1)
-                : 0;
-        }
+        $ratingCounts = collect([5, 4, 3, 2, 1])->mapWithKeys(function ($rating) use ($ratingCounts) {
+            return [$rating => $ratingCounts->get($rating, 0)];
+        });
         $reviews = Review::query()
                 ->withStarRating($request->star_rating)
                 ->sortBy($request->sort_by)
                 ->get();
-        return view('user/detail', compact('favorite','restaurant','numbers','reviews','averageRating', 'ratingPercentages','reviews'));
+        return view('user/detail', compact('favorite','restaurant','numbers','reviews','averageRating','ratingCounts','reviews', 'totalReviews'));
     }
 
 
