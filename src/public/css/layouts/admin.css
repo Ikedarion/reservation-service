@@ -7,33 +7,23 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* headerを左端に縦に細長く配置 */
-/* ハンバーガーメニューの位置を上に配置 */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    /* 画面の高さに合わせて縦長に */
     width: 60px;
-    /* 幅を狭く設定 */
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    /* 要素を縦に並べる */
     align-items: center;
     justify-content: flex-start;
     padding-top: 20px;
-    /* 上部に少し余白を加える */
-    /*box-shadow: 4px 0 8px rgb(0, 0, 0, 0.1);*/
-    /* メニューの影を追加 */
     z-index: 100;
 }
 
-/* メニューを上に配置 */
 .menu {
     margin-top: 0;
-    /* 上部に余白をなくして、最上部に配置 */
 }
 
 
@@ -47,7 +37,6 @@ body {
     box-shadow: 1.5px 2px 2px #babdd1;
     display: inline-block;
     margin: 0 0 10px 15px;
-    /* メニューと下のコンテンツの間隔を調整 */
 }
 
 .line {

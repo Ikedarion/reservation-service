@@ -456,7 +456,6 @@ body {
     cursor: pointer;
 }
 
-/* 評価が選ばれた場合の星の色 */
 .star-input:checked~.star {
     color: gold;
 }
@@ -466,7 +465,6 @@ body {
     color: gold;
 }
 
-/* ラベルの間隔を調整 */
 .star-input {
     display: none;
 }
