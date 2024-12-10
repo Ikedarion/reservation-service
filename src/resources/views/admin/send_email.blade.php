@@ -8,19 +8,18 @@
 @endsection
 
 @section('content')
+@if(session('success'))
+<div class="message message--success">
+    {{ session('success') }}
+</div>
+@endif
+@if(session('error'))
+<div class="message message--error">
+    {{ session('error') }}
+</div>
+@endif
 <div class="mail__content">
-    @if(session('success'))
-    <div class="message message--success">
-        {{ session('success') }}
-    </div>
-    @endif
-    @if(session('error'))
-    <div class="message message--error">
-        {{ session('error') }}
-    </div>
-    @endif
-
-    <h3 class="mail__header">メッセージ作成</h3>
+    <h3 class="mail__header">メール作成</h3>
     <div class="mail__inner">
         <div class="mail-form">
             <div class="mail-form__group">

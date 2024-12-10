@@ -1,14 +1,13 @@
 body,
 html {
-    background-color: #e8e8e8;
+    background-color: #ebebeb;
 }
 
 .detail_content {
-    max-width: 1400px;
+    width: 100vw;
 }
 
 .detail__inner {
-    max-width: 1400px;
     width: 100%;
     display: flex;
     gap: 20px;
@@ -21,10 +20,6 @@ html {
     padding: 12px 0px 16px 0px;
     position: relative;
     color: #444444;
-}
-
-.detail__heading:active {
-    transform: translateY(1.5px);
 }
 
 .home__link {
@@ -144,6 +139,7 @@ html {
     border-radius: 4px;
     box-shadow: 3px 3px 3px #8d8d8f;
     position: relative;
+    box-shadow: 0px 2px 5px rgba(21, 23, 30, 0.373);
 }
 
 .res__heading {
@@ -232,26 +228,30 @@ html {
 }
 
 .review {
-    font-size: 12px;
-    color: #5691e3;
     text-decoration: none;
 }
 
 .average {
-    font-size: 103%;
+    font-size: 13px;
     color: #464647;
     font-weight: 600;
 }
 
-
+.count {
+    font-size: 10px;
+    color: #5691e3;
+}
 
 
 .modal__header {
-    font-size: 18px;
     font-weight: bold;
-    color:#394162;
     letter-spacing: 1px;
-    margin: 20px auto 20px 0;
+    margin: 20px auto 15px 0;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+    color: #4b4f54;
+    font-weight: bold;
 }
 
 .modal {
@@ -260,7 +260,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.577);
+    background-color: rgba(0, 0, 0, 0.692);
     z-index: 10;
     display: none;
     opacity: 0;
@@ -270,7 +270,7 @@ html {
 .modal.open {
     display: block;
     opacity: 1;
-    background-color: rgba(35, 35, 35, 0.472);
+    background-color: rgba(35, 35, 35, 0.61);
 }
 
 
@@ -278,11 +278,10 @@ html {
     position: relative;
     margin: 2% auto 0;
     width: 100vw;
-    height: auto;
-    max-width: 750px;
-    min-height: auto;
-    background-color: #ffffff;
-    padding: 20px 60px 30px;
+    height: 1100px;
+    max-width: 850px;
+    background-color: #fbfbfb;
+    padding: 20px 40px 10px;
     box-sizing: border-box;
     border-radius: 8px;
     display: flex;
@@ -293,8 +292,7 @@ html {
 
 .modal__content {
     width: 100%;
-    background-color: #ffffff;
-    padding: 30px;
+    padding: 30px 30px 0;
 }
 
 .modal__heading {
@@ -307,7 +305,7 @@ html {
 }
 
 .modal__heading-items {
-    width: 30%;
+    width: 25%;
     margin-top: 20px;
     text-align: center;
 }
@@ -315,7 +313,7 @@ html {
 .modal__text {
     font-weight: bold;
     font-size: 24px;
-    color: #545763;
+    color: #505152;
 }
 
 .review-count {
@@ -339,7 +337,7 @@ html {
     flex: 0;
     margin-right: 8px;
     font-size: 12px;
-    color: #394162;
+    color: #505152;
 }
 
 .rating-item-right {
@@ -360,7 +358,7 @@ html {
 
 .bar {
     height: 95%;
-    background-color: #c7c8ca;
+    background-color: #c9caca;
     transition: width 0.3s ease;
     border-radius: 3px;
 }
@@ -370,7 +368,7 @@ html {
     padding: 0;
     width: 40px;
     font-size: 12px;
-    color: #394162;
+    color: #505152;
 }
 
 .form {
@@ -382,18 +380,19 @@ html {
     border: none;
     width: 105px;
     font-weight: bold;
-    color: #394162;
+    color: #505152;
+    background-color: #fafafa;
 }
 
 .select {
     margin: 15px 0 20px auto;
     border: none;
     font-weight: bold;
-    color: #394162;
+    color: #505152;
+    background-color: #fafafa;
 }
 
 .filter-submit {
-    background-color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 3px;
     color: #ffffff;
@@ -408,23 +407,28 @@ html {
 }
 
 .review__content {
-    max-height: 740px;
+    height: 100vh;
     overflow-y: auto;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .review__container {
-    background-color: #f7f7f7;
-    border: #cecece;
     padding: 10px 15px 15px;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.113);
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease, transform 0.4s ease;
+    border: 1px solid #e8e8e8;
+    position: relative;
+    margin-bottom: 9px;
+    background-color: #fdfdfd;
+    z-index: 5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 
 .gold {
-    color: #ffae0c;
+    color: #fdb119;
 }
 
 .gray {
@@ -469,12 +473,12 @@ html {
 .review-title {
     font-size: 12.5px;
     font-weight: bold;
-    color: #5f6062;
+    color: #505152;
     margin: 11px 0 -7px;
 }
 
 .review-comment {
-    color: #5f5f62;
+    color: #505152;
     font-size: 12px;
     line-height: 150%;
     letter-spacing: 1px;

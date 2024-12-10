@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const genreSelect = document.getElementById("genre");
     const addressInput = document.getElementById("address");
-    const autoTagInput = document.getElementById("auto-tag");
     const createForm = document.getElementById("create-form");
     const modal = document.getElementById("modal");
     const previewCard = document.getElementById("preview-card");
@@ -11,12 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const pattern = /(東京都|北海道|(?:京都|大阪)府|[一-龯]{2,3}県)/;
         const match = address.match(pattern);
         return match ? match[0] : "";
-    };
-
-    const updateAutoTags = () => {
-        const genre = genreSelect.value.trim();
-        const prefecture = extractPrefecture(addressInput.value).trim();
-        autoTagInput.value = [genre && `#${genre}`, prefecture && `#${prefecture}`].filter(Boolean).join(" ");
     };
 
     const updatePreview = (event) => {
@@ -37,19 +30,23 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.onload = (e) => (previewImageTag.src = e.target.result);
             reader.readAsDataURL(image);
         } else {
-            previewImageTag.src = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
+            previewImageTag.src = "";
         }
         previewCard.style.display = "block";
     };
 
-    genreSelect.addEventListener("change", updateAutoTags);
-    addressInput.addEventListener("input", updateAutoTags);
     document.getElementById("preview-button").addEventListener("click", updatePreview);
 
     document.getElementById("show-form-btn").addEventListener("click", () => {
         modal.style.display = "none";
         createForm.style.display = "block";
         createForm.classList.add("open");
+        previewCard.style.display = "block";
+        document.getElementById("preview-name").textContent = document.getElementById("name").value || "未設定";
+            document.getElementById("preview-genre").textContent = `#${genreSelect.value || ""}`;
+            document.getElementById("preview-address").textContent = `#${extractPrefecture(addressInput.value) || ""}`;
+            document.getElementById("preview-description").textContent = document.getElementById("description").value || "";
+
     });
 
     document.getElementById("close-form-btn").addEventListener("click", () => {

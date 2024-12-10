@@ -22,66 +22,49 @@
 
 <body>
     <header class="header">
-        <div class="app">
-
+        <h2 class="header__title">Rese</h2>
+        <div class="header__item">@yield('item')</div>
+        <div class="header__user-info">
+            <span class="user-name">{{ auth()->user()->name}}&nbsp;さん</span>
+        </div>
+    </header>
+    <div class="layout">
+        <nav class="menu">
             @if(auth()->check())
             @if(auth()->user()->role === '管理者')
-            <div class="menu">
-                <a href="#" class="menu__link" onclick="toggleMenu(event)">
-                    <div class="square">
-                        <div class="line long"></div>
-                        <div class="line medium"></div>
-                        <div class="line short"></div>
-                    </div>
-                </a>
-                <div class="dropdown-menu">
-                    <div class="admin-item">
-                        <a class="admin__link" href="/">ホーム</a>
-                        <a class="admin__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
-                        <a class="admin__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
-                        <form class="admin-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <input type="submit" value="ログアウト">
-                        </form>
-                    </div>
-                </div>
+            <div class="menu__content">
+                <a class="menu__link" href="/">ホーム</a>
+                <a class="menu__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
+                <a class="menu__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
+                <form class="menu__form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <input type="submit" value="ログアウト">
+                </form>
             </div>
             @elseif(auth()->user()->role === '店舗代表者')
-            <div class="menu">
-                <a href="#" class="menu__link" onclick="toggleMenu(event)">
-                    <div class="square">
-                        <div class="line long"></div>
-                        <div class="line medium"></div>
-                        <div class="line short"></div>
-                    </div>
-                </a>
-                <div class="dropdown-menu">
-                    <div class="manager-item">
-                        <h2 class="h2">Rese</h2>
-                        <a class="manager__link" href="{{ route('manager.index') }}">予約一覧</a>
-                        <a class="manager__link" href="{{ route('manager.showReviews') }}">レビュー管理画面</a>
-                        <a class="manager__link" href="{{ route('manager.detail') }}">店舗詳細</a>
-                        <a class="manager__link" href="{{ route('reservation.scan') }}">QRCode照合画面</a>
-                        <form class="manager-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <input type="submit" value="ログアウト">
-                        </form>
-                    </div>
-                </div>
+            <div class="menu__content">
+                <a class="menu__link" href="{{ route('manager.index') }}">予約一覧</a>
+                <a class="menu__link" href="{{ route('manager.showReviews') }}">レビュー管理画面</a>
+                <a class="menu__link" href="{{ route('manager.detail') }}">店舗詳細</a>
+                <a class="menu__link" href="{{ route('reservation.scan') }}">QRCode照合画面</a>
+                <form class="menu__form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <input type="submit" value="ログアウト">
+                </form>
             </div>
             @endif
             @endif
+        </nav>
 
-        </div>
-        <div class="header__item">@yield('item')</div>
-    </header>
+    </div>
+    <div class="header__item">@yield('item')</div>
+    </div>
 
-    <main>
+    <<main class="main__content">
         @yield('content')
-    </main>
+        </main>
 
-    <script src="{{ asset('js/common.js') }}" defer></script>
-    @stack('scripts')
+        @stack('scripts')
 </body>
 
 </html>

@@ -35,12 +35,11 @@
     .form input {
         border: none;
         text-decoration: none;
-        color: white;
-        padding: 6px 14px;
+        color: #1271d0;
+        padding: 12px 14px;
         font-weight: bold;
-        font-size: 18px;
-        margin: 13px 0;
-        background-color: #1271d0;
+        font-size: 20px;
+        background-color: transparent;
     }
 
     .form:hover {
@@ -48,9 +47,8 @@
     }
 
     .form input:hover {
-        background-color: #00509e;
-        color: white;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        color: #00509e;
+        text-shadow: 1.5px 2px 2px rgba(186, 189, 209, 0.6);
     }
 
     .link:hover {

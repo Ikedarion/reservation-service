@@ -67,15 +67,16 @@ Route::middleware(['auth','verified','roleManager'])->group(function () {
     Route::patch('/reviews/reply/{id}', [ManagerController::class, 'reply'])->name('reviews.reply');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('home');
+    Route::get('/thanks', [UserController::class, 'showThanks'])->name('thanks');
+});
 
 Route::get('/menu/user', [UserController::class, 'showUserMenu']);
-Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 Route::post('/register', [RegisterUserController::class, 'store']);
 Route::post('/login', [RegisterUserController::class, 'login']);
-Route::get('/thanks', [UserController::class, 'showThanks'])->name('thanks');
-
 
 
 

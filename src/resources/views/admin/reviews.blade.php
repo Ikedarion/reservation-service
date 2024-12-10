@@ -1,12 +1,10 @@
 @extends('layouts.admin')
 
-@section('link_url','/menu/user')
-
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
-<link rel="stylesheet" href="{{ asset('css/manager/reviews.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/reviews.css') }}">
 @endsection
+
 
 @section('content')
 @if(session('success'))
@@ -23,8 +21,15 @@
     レビュー管理
 </p>
 <div class="review__container">
-
     <form class="filter-form" action="{{ route('review.filter') }}" method="GET">
+        <label for="sort_by" class="filter-form__label">店舗名</label>
+        <select name="sort_by" id="sort_by" class="filter-select">
+            <option class="status-option" value="" hidden>選択</option>
+            @foreach($restaurants as $restaurant )
+            <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
+            @endforeach
+        </select>
+
         <label for="name" class="filter-form__label">キーワード</label>
         <input class="filter-input" type="text" name="keyword" id="name" value="{{ request('keyword'), old('keyword') }}">
 
@@ -54,9 +59,9 @@
         <input class="filter-input" type="date" name="end_date" id="end_date" value="{{ request('end_date', old('end_date')) }}">
         <div class="filter-button">
             <button type="submit" class="filter-submit">探す</button>
-
         </div>
     </form>
+
     <div class="review-list">
         <div class="scroll">
             @foreach($reviews as $review)

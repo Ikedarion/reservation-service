@@ -9,21 +9,21 @@
 
 
 @section('content')
+@if(session('success'))
+<div class="message message--success">
+    {{ session('success')}}
+</div>
+@endif
+@if(session('error'))
+<div class="message message--error">
+    {{ session('error')}}
+</div>
+@endif
+<p class="reservation__heading">
+    予約一覧
+</p>
 <div class="reservation__content">
     <div class="reservation__inner">
-        @if(session('success'))
-        <div class="message message--success">
-            {{ session('success')}}
-        </div>
-        @endif
-        @if(session('error'))
-        <div class="message message--error">
-            {{ session('error')}}
-        </div>
-        @endif
-        <div class="reservation__heading">
-            予約一覧
-        </div>
         <div class="form__group">
             <form class="res-form" action="{{ route('manager.search') }}" method="get">
                 <div class="res-form__row">

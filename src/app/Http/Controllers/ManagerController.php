@@ -133,7 +133,7 @@ class ManagerController extends Controller
             mkdir($path, 0777, true);
         }
 
-        $imagePath = null; // 初期化
+        $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images','public');
         } else {

@@ -28,6 +28,10 @@ class UserController extends Controller
         $restaurants = Restaurant::with(['reservations.review'])->get();
         $userId = Auth::id();
 
+        foreach ($restaurants as $restaurant) {
+            $restaurant->review_count = $restaurant->reservations->whereNotNull('review')->count();
+        }
+
         $favorites = Restaurant::whereHas('favoriteUsers',function($query) use($userId) {
             $query->where('user_id',$userId);
         })->get();

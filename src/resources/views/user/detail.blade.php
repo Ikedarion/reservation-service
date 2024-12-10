@@ -53,7 +53,7 @@
                                         @endif
                                         @endfor
                                         <span class="average">{{ number_format($averageRating, 1) }}</span>
-                                        ({{ $reviews->count()}}件)
+                                        <span class="count">({{ $reviews->count()}}件)</span>
                             </a>
                             @endif
                         </div>

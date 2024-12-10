@@ -19,7 +19,7 @@ class RoleManager
 
     public function handle(Request $request, Closure $next)
     {
-        $roles = ['店舗代表者', '管理者'];
+        $roles = ['店舗代表者', '管理者','ユーザー'];
 
         if (Auth::check() && in_array(Auth::user()->role, $roles)) {
             return $next($request);

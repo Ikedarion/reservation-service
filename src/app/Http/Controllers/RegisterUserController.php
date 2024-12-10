@@ -43,7 +43,7 @@ class RegisterUserController extends Controller
 
             switch ($role) {
                 case '管理者':
-                    return redirect()->route('home');
+                    return redirect()->route('admin.index');
                 case '店舗代表者':
                     return redirect()->route('manager.index');
                 case 'ユーザー':

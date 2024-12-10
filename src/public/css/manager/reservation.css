@@ -1,16 +1,11 @@
-html,
-body {
-    background-color: #f7f7f7;
-    padding-left: 28px;
-}
 
-.reservation__heading {
+.reservation__heading{
     font-size: 18px;
-    letter-spacing: 1px;
-    margin-top: 60px;
-    padding-right: 27px;
-    display: flex;
-    justify-content: center;
+    padding: 2px 0 10px 0;
+    border-bottom: 1px solid #e3e3e3;
+    color: #4c5258;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .message {
@@ -46,29 +41,33 @@ body {
 }
 
 .reservation__content {
-    max-width: 1400px;
-    height: 100%;
-    padding: 0 54px 1.4% 0;
-    color: #4a4d54;
+    color: #4b4f54;
+    background-color: #fdfdfd;
+    padding: 10px 30px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    min-width: 800px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .reservation__inner {
     width: 100%;
+    height: 900px;
     text-align: center;
 }
 
 .form__group {
     width: 100%;
     height: 135px;
-    margin: 20px auto 15px;
+    margin: 20px auto 10px;
     border-collapse: collapse;
     table-layout: fixed;
-    background-color: #eeeff0;
+    background-color: #f2f3f4;
     padding: 5px 0px 0px;
     position: relative;
-    border-radius: 3px;
+    border-radius: 1px;
     border: 1px solid #e4e5e7;
-    min-width: 740px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .res-form {
@@ -102,7 +101,6 @@ body {
     font-size: 12px;
     margin-bottom: 3px;
     white-space: nowrap;
-    color: #383b42;
 }
 
 .res-form__search {
@@ -124,6 +122,7 @@ body {
     box-sizing: border-box;
     border-radius: 3px;
     border: 1px solid #d6d8dc;
+    background-color: #ffffff;
     color: #707072 !important;
 }
 
@@ -163,17 +162,17 @@ body {
     font-size: 15px;
     border-radius: 3px;
     white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 
 .table__header {
-    background-color: #eeeff0;
+    background-color: #f2f3f4;
     padding: 15px 15px;
     text-align: center;
     font-size: 13px;
     border-top: 1px solid #e4e5e7;
     letter-spacing: 1px;
-    color: #4a4d54;
 }
 
 .table__row {
@@ -183,22 +182,14 @@ body {
 }
 
 .res-table tr:hover {
-    background-color: #f1f4fa;
     color: #40434a;
-    transform: scale(1.01);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.082);
+    transform: scale(1.04);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.206);
     transition: all 0.3s ease;
+    background-color: #f6f8fa;
 }
 
-.res-form__date:hover,
-.res-form__number:hover,
-.res-form__status:hover,
-.res-form__input:hover,
-.res-form__submit:hover,
-.res-form__reset:hover {
-    box-shadow: 1.5px 1.5px 2px rgba(0, 0, 0, 0.145);
-    transition: all 0.3s ease;
-}
+
 
 .table__item {
     padding: 20px 25px;

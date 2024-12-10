@@ -57,9 +57,7 @@
                                     @endif
                                     @endfor
                                     <span class="average" style="font-size: 70%;">
-                                        ({{ $restaurant->reservations->sum(function ($reservation) {
-                                        return $reservation->review ? $reservation->review->count() : 0 ;
-                                    }) }})
+                                        ({{ $restaurant->review_count ?? 0 }})
                                     </span>
 
                         </a>

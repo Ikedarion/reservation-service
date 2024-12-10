@@ -1,43 +1,44 @@
 @extends('layouts.admin')
 
-@section('link_url','/menu/user')
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
 @endsection
 
-@section('item')
-<form class="user-form" action="{{ route('admin.search') }}" method="get">
-    <input type="hidden" name="tab" value="{{ request()->get('tab','users')}}">
-    <input class="user-form__input" type="text" name="keyword" value="{{ request()->get('keyword') }}" placeholder="Search Users">
-    <button class="user-form__search-submit" type="submit"><i class="fas fa-search"></i></button>
-    <a class="user-form__reset-link" href="/admin/user">リセット</a>
-</form>
-@endsection
-
 @section('content')
+@if(session('success'))
+<div class="message message--success">
+    {{ session('success')}}
+</div>
+@endif
+@if(session('error'))
+<div class="message message--error">
+    {{ session('error')}}
+</div>
+@endif
 <div class="user__content">
-
-    @if(session('success'))
-    <div class="message message--success">
-        {{ session('success')}}
+    <div class="user-form__header">
+        <div class="user__heading">ユーザー一覧</div>
     </div>
-    @endif
-    @if(session('error'))
-    <div class="message message--error">
-        {{ session('error')}}
-    </div>
-    @endif
-
     <div class="user__inner">
         <div class="tab-titles">
-            <div class="tab-link" data-tab="users">ユーザー</div>
-            <div class="tab-link" data-tab="managers">店舗代表者</div>
-            <div class="tab-link" data-tab="admins">管理者</div>
-
-            <div class="admin-form">
-                <a class="admin-form__submit" href="#modal_create"><i class="fas fa-user-plus"></i>&nbsp;新規作成</a>
+            <div class="tab-items">
+                <div class="tabs">
+                    <div class="tab-link" data-tab="users">ユーザー</div>
+                    <div class="tab-link" data-tab="managers">店舗代表者</div>
+                    <div class="tab-link" data-tab="admins">管理者</div>
+                </div>
+                <div class="admin-form">
+                    <a class="admin-form__submit" href="#modal_create"><i class="fas fa-user-plus"></i>&nbsp;新規作成</a>
+                </div>
             </div>
+            <form class="user-form" action="{{ route('admin.search') }}" method="get">
+                <input type="hidden" name="tab" value="{{ request()->get('tab','users')}}">
+                <input class="user-form__input" type="text" name="keyword" value="{{ request()->get('keyword') }}" placeholder="Search Users">
+                <button class="user-form__search-submit" type="submit"><i class="fas fa-search"></i></button>
+                <a class="user-form__reset-link" href="/admin/user">リセット</a>
+            </form>
+
             <div class="modal {{ $errors->has('name') || $errors->has('email') || $errors->has('password') || $errors->has('role') ? 'open' : ' ' }}" id="modal_create">
                 <div class="modal__inner">
                     <div class="modal__content">
@@ -96,7 +97,7 @@
                     <td class="user__item">{{ $user->id }}</td>
                     <td class="user__item">{{ $user->name }}</td>
                     <td class="user__item">{{ $user->email }}</td>
-                    <td class="user__item">******</td>
+                    <td class="user__item">* * * * *</td>
                     <td class="user__item">{{ $user->role }}</td>
                     <td class="user__item">
                         <div class="user__item-items">
@@ -130,7 +131,7 @@
                     <td class="user__item">{{ $manager->id }}</td>
                     <td class="user__item">{{ $manager->name }}</td>
                     <td class="user__item">{{ $manager->email }}</td>
-                    <td class="user__item">******</td>
+                    <td class="user__item">* * * * *</td>
                     <td class="user__item">
                         @if($manager->restaurant)
                         {{ $manager->restaurant->name }}
@@ -171,7 +172,7 @@
                     <td class="user__item">{{ $admin->id }}</td>
                     <td class="user__item">{{ $admin->name }}</td>
                     <td class="user__item">{{ $admin->email }}</td>
-                    <td class="user__item">******</td>
+                    <td class="user__item">* * * * *</td>
                     <td class="user__item">{{ $admin->role }}</td>
                     <td class="user__item">
                         <div class="user__item-items">
