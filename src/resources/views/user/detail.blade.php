@@ -155,6 +155,16 @@
             });
         });
 
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('open');
+                    sessionStorage.removeItem('modalId');
+                }
+            });
+        });
+
         window.onload = function() {
             const modalId = sessionStorage.getItem('modalId');
 

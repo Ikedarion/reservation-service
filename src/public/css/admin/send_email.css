@@ -46,8 +46,8 @@
     width: 450px;
     padding: 20px 50px 50px;
     background-color: #fdfdfd;
-    border-radius: 8px;
-    margin: 30px 0 0 0;
+    border-radius: 3px;
+    margin: 20px 0 0 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -184,7 +184,8 @@
 .form__submit {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(to bottom, #3d86da, #2f5fa3);
+    background: linear-gradient(to bottom, #5d6a7d, #3f5369);
+    box-shadow: 1.5px 1.5px 2px #aeb2cb, 0 1px 3px rgba(0, 0, 0, 0.029);
     color: #ffffff;
     border: none;
     border-radius: 3px;
@@ -195,7 +196,7 @@
 }
 
 .form__submit:hover {
-    background: linear-gradient(to top, #2d67a8, #2f5fa3);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top, #4b6071, #485a6e);
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.045);
 }
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 
+
 class ManagerController extends Controller
 {
     private $areas = [
@@ -29,7 +30,7 @@ class ManagerController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $today = \Carbon\Carbon::today();
+        $today = Carbon::today();
 
         $reservations = Reservation::whereHas('restaurant',function($query) use($userId) {
             $query->where('user_id',$userId);
@@ -135,18 +136,12 @@ class ManagerController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images','public');
-        } else {
-            $imagePath = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
-        }
-
-        /* 画像の保存（S3にアップロード）
-        if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 's3');
-            // S3のURLを取得
-            $imageUrl = Storage::disk('s3')->url($imagePath);
+            $imageUrl = 'https://' . env('AWS_BUCKET') . '.s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . $imagePath;
+
+        } else {
+            $imageUrl = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
         }
-        */
 
         Restaurant::create([
             'user_id' => $userId,
@@ -154,7 +149,7 @@ class ManagerController extends Controller
             'genre' => $input['genre'],
             'address' => $input['address'],
             'description' => $input['description'],
-            'image' => $imagePath,
+            'image' => $imageUrl,
         ]);
 
         return redirect()->route('manager.detail')->with('success','店舗情報の登録が完了しました。');
@@ -167,13 +162,14 @@ class ManagerController extends Controller
         $input = $request->only('name', 'genre', 'address', 'description');
 
         if($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images','public');
-            $input['image'] = $imagePath;
+            $imagePath = $request->file('image')->store('images','s3');
+            $imageUrl = 'https://' . env('AWS_BUCKET') . '.s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . $imagePath;
+            $input['image'] = $imageUrl;
             if($restaurant->image) {
-                Storage::delete($restaurant->image);
+                Storage::disk('s3')->delete(str_replace(env('AWS_URL') . '/', '', $restaurant->image));
             }
         } else {
-            $imagePath = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
+            $imageUrl = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
         }
 
         $restaurant->update($input);

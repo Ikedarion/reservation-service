@@ -38,13 +38,12 @@
 
 .heading {
     font-size: 18px;
-    padding: 10px 0 10px;
+    padding: 3px 0 10px;
     border-bottom: 1px solid #e3e3e3;
     color: #4c5258;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     font-weight: bold;
 }
-
 
 .manager__content {
     width: 100%;

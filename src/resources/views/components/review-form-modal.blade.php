@@ -26,20 +26,20 @@
                 <div class="review-modal__group">
                     <label class="review-modal__label">評価</label>
                     <div class="star-rating">
-                        <input type="radio" name="rating" value="5" id="1-star" class="star-input">
-                        <label for="1-star" class="star">&#9733;</label>
+                        <input type="radio" name="rating_{{ $reservation->id }}" value="5" id="1-star-{{ $reservation->id }}" class="star-input">
+                        <label for="1-star-{{ $reservation->id }}" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="4" id="2-star" class="star-input">
-                        <label for="2-star" class="star">&#9733;</label>
+                        <input type="radio" name="rating_{{ $reservation->id }}" value="4" id="2-star-{{ $reservation->id }}" class="star-input">
+                        <label for="2-star-{{ $reservation->id }}" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="3" id="3-star" class="star-input">
-                        <label for="3-star" class="star">&#9733;</label>
+                        <input type="radio" name="rating_{{ $reservation->id }}" value="3" id="3-star-{{ $reservation->id }}" class="star-input">
+                        <label for="3-star-{{ $reservation->id }}" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="2" id="4-star" class="star-input">
-                        <label for="4-star" class="star">&#9733;</label>
+                        <input type="radio" name="rating_{{ $reservation->id }}" value="2" id="4-star-{{ $reservation->id }}" class="star-input">
+                        <label for="4-star-{{ $reservation->id }}" class="star">&#9733;</label>
 
-                        <input type="radio" name="rating" value="1" id="5-star" class="star-input">
-                        <label for="5-star" class="star">&#9733;</label>
+                        <input type="radio" name="rating_{{ $reservation->id }}" value="1" id="5-star-{{ $reservation->id }}" class="star-input">
+                        <label for="5-star-{{ $reservation->id }}" class="star">&#9733;</label>
                     </div>
                 </div>
                 @error('rating')

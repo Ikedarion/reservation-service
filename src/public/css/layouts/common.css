@@ -67,21 +67,24 @@ body {
     left: -220px;
     height: 100%;
     width: 220px;
-    box-shadow: 4px 0 8px rgb(0,0,0,0.1);
     text-align: left;
-    background-color: #ffffff;
     padding: 20px;
     z-index: 1000;
     transform: translateX(0);
     transition: transform 0.5s ease;
     border: none;
+    width: 185px;
+    background: #f0f0f0;
+    border-right: 1px solid #dcdfe2;
+    overflow-y: auto;
+    box-shadow: 2px 0 4px rgba(33, 33, 34, 0.092);
 }
 
 .dropdown-menu.active_ {
     display: block;
     transform: translateX(220px);
-    background-color: #ffffff;
-    border: none;
+    background: #f0f0f0;
+    border-right: 1px solid #dcdfe2;
 }
 
 .manager__link,
@@ -91,20 +94,21 @@ body {
     display: block;
     padding: 8px 12px;
     font-size: 14px;
-    margin-bottom: 15px;
     text-shadow: none;
+    color: #34495e;
+    margin-bottom: 15px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .manager__link:hover,
 .admin__link:hover {
-    background-color: #eaeaea;
-    color: #00376b;
+    background-color: #d3d3d3;
+    color: #293a49;
 }
 
 .h2 {
     margin-top: 0;
-    color: #0854d8f7;
+    color: #34495e;
     padding: 5px 10px 0;
     font-size: 28px;
     display: inline-block;
@@ -114,17 +118,18 @@ body {
 .manager-form input,
 .admin-form input {
     border: none;
-    background-color: #00509e;
-    color: white;
-    padding: 5px 13px;
-    font-size: 11px;
+    background-color: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
-    margin: 10px 10px;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    color: #34495e;
 }
 
-.manager-form input:hover,
-.admin-form input:hover {
-    background-color: #00376b;
+.manager-form:hover,
+.admin-form:hover {
+    background-color: #d3d3d3;
+    color: #293a49;
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ReservationRequest;
 use App\Http\Requests\ReservationUpdateRequest;
 use App\Models\Reservation;
 use App\Models\Favorite;

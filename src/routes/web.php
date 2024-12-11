@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagerController;
-use App\Http\Controllers\ImageController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\ReservationController;
 
@@ -20,7 +19,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::middleware(['auth', 'verified', 'roleManager'])->group(function () {
+Route::middleware(['auth', 'verified', 'roleUser'])->group(function () {
     Route::get('/done', [UserController::class, 'showDone'])->name('done');
     Route::post('/favorite/{id}', [UserController::class, 'favorite'])->name('favorite');
     Route::get('/search', [UserController::class, 'search'])->name('search');
@@ -30,17 +29,13 @@ Route::middleware(['auth', 'verified', 'roleManager'])->group(function () {
     Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('delete');
     Route::patch('/update/{id}', [UserController::class, 'update'])->name('update');
     Route::post('/review/{id}', [UserController::class, 'storeReview'])->name('review');
-
     Route::post('/create-checkout-session', [ReservationController::class, 'createCheckoutSession'])->name('payment.createCheckoutSession');
     Route::get('reservation/success/{reservationId}', [ReservationController::class, 'success'])->name('payment.success');
     Route::get('reservation/cancel/{reservationId}', [ReservationController::class, 'cancel'])->name('payment.cancel');
-
     Route::get('/reservation/verify/{id}', [ReservationController::class, 'generateQrCode'])->name('reservation.QrCode');
-
-
 });
 
-Route::middleware(['auth','verified','roleManager'])->group(function () {
+Route::middleware(['auth','verified','roleAdmin'])->group(function () {
     Route::get('/admin/user', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
@@ -68,21 +63,14 @@ Route::middleware(['auth','verified','roleManager'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('home');
     Route::get('/thanks', [UserController::class, 'showThanks'])->name('thanks');
 });
 
+Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/menu/user', [UserController::class, 'showUserMenu']);
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/register', [RegisterUserController::class, 'store']);
 Route::post('/login', [RegisterUserController::class, 'login']);
-
-
-
-
-
-
 
 
 

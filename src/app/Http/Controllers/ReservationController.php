@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Stripe\Stripe;
 use Illuminate\Support\Facades\Validator;
-use App\jobs\SendReservationConfirmation;
 
 
 
@@ -46,7 +45,7 @@ class ReservationController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'errors' => $validator->errors()
-            ], 422); // バリデーションエラーの返却
+            ], 422);
         }
 
 
@@ -69,7 +68,6 @@ class ReservationController extends Controller
 
             $userEmail = auth()->user()->email;
 
-            // Stripe Checkout セッションの作成
             $session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -78,7 +76,7 @@ class ReservationController extends Controller
                         'product_data' => [
                             'name' => "Reservation at Restaurant {$restaurantId}",
                         ],
-                        'unit_amount' => 1000,  // 価格を適切な金額に設定
+                        'unit_amount' => 1000,
                     ],
                     'quantity' => 1,
                 ]],

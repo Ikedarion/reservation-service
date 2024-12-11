@@ -1,5 +1,6 @@
 <div class="modal" id="modal">
     <div class="modal__inner">
+        <p class="close">×</p>
         <div class="modal__header">レビュー</div>
         <div class="modal__content">
             <div class="modal__heading">

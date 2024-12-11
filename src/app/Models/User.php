@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'pm_type',
         'pm_last_four',
         'trial_ends_at',
+        'email_verified_at'
     ];
 
     /**

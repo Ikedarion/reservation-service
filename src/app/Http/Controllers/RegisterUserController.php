@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Fortify;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class RegisterUserController extends Controller
@@ -39,7 +38,7 @@ class RegisterUserController extends Controller
             if ($user->email_verified_at === null) {
                 return redirect()->route('verification.notice');
             }
-            $role = $user->role; // ユーザーの役割を取得
+            $role = $user->role;
 
             switch ($role) {
                 case '管理者':

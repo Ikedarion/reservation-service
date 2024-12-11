@@ -31,7 +31,7 @@
             </div>
             <div class="card__inner">
                 <div class="card__image">
-                    <img src="{{ $restaurant->images}}" alt="Image">
+                    <img src="{{ $restaurant->image }}" alt="Image">
                 </div>
                 <div class="card__content">
                     <div class="card__tag">

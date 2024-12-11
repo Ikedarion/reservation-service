@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const genreSelect = document.getElementById("genre");
     const addressInput = document.getElementById("address");
-    const autoTagInput = document.getElementById("auto-tag");
     const previewCard = document.getElementById("preview-card");
     const previewImageTag = document.getElementById("preview-image-tag");
     const previewImageDiv = document.getElementById("preview-image");

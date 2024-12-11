@@ -261,12 +261,14 @@ body {
     z-index: 10;
     display: none;
     opacity: 0;
+    overflow-y: auto;
 }
 
 .modal.open {
     display: block;
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
 }
 
 
@@ -274,7 +276,7 @@ body {
     position: relative;
     margin: 10% auto;
     width: 100vw;
-    max-width: 385px;
+    max-width: 395px;
     height: auto;
     background-color: rgb(255, 255, 255);
     padding: 50px 20px 50px 0;
@@ -366,7 +368,7 @@ body {
     box-sizing: border-box;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    max-height: 100vh;
+
 }
 
 .review-modal__header {
@@ -374,17 +376,6 @@ body {
     align-items: center;
 }
 
-.review-modal__image {
-    width: 150px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-radius: 3px;
-}
-
-.review-modal__image  img {
-    width: 100%;
-    border-radius: 3px;
-}
 
 .review-modal__p {
     color: #394162;
@@ -506,23 +497,32 @@ body {
     box-shadow: 3px 3px 4px #bababa;
     box-sizing: border-box;
     position: relative;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .card__image {
+    position: relative;
     width: 100%;
+    padding-top: 65%;
+    overflow: hidden;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .card__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
     width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-right: 0.1px solid #bdbdbd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .card__content {
-    padding: 0px 15px;
+    padding: 8px 15px;
     width: 100%;
 }
 

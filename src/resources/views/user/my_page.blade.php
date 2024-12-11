@@ -54,7 +54,7 @@
 
                         <div class="res__title">
                             <i class="fa-solid fa-thumbtack"></i>予約&nbsp;{{ $loop->iteration }}
-                            
+
                             <div class="table__header">
                                 @if($reservation->status === '来店済み')
                                 <a class="modal__button" href="#reviewModal{{$reservation->id}}">

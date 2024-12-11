@@ -43,16 +43,16 @@
 .reservation__content {
     color: #4b4f54;
     background-color: #fdfdfd;
-    padding: 10px 30px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding: 5px 25px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     min-width: 800px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 1230px;
 }
 
 .reservation__inner {
     width: 100%;
-    height: 900px;
     text-align: center;
 }
 
@@ -67,7 +67,7 @@
     position: relative;
     border-radius: 1px;
     border: 1px solid #e4e5e7;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.065);
 }
 
 .res-form {
@@ -127,8 +127,8 @@
 }
 
 .res-form__submit {
-    background: linear-gradient(to bottom, #3a669e, #2d4e7a);
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.238);
+    background: linear-gradient(to bottom, #5d6a7d, #3f5369);
+    box-shadow: 1.5px 1.5px 2px #aeb2cb, 0 1px 3px rgba(0, 0, 0, 0.029);
     color: white !important;
     border: none;
     font-size: 12px;
@@ -146,7 +146,8 @@
 }
 
 .res-form__submit:hover {
-    background: linear-gradient(to bottom, #345c91, #2d4e7a);
+    background: linear-gradient(to top, #4b6071, #485a6e);
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.045);
 }
 
 .res-form__reset:hover {
@@ -248,11 +249,11 @@
 
 .sidebar {
     height: 100%;
-    width: 350px;
+    width: 340px;
     position: fixed;
     z-index: 5;
     top: 0;
-    right: -370px;
+    right: -360px;
     background-color: transparent;
     overflow-x: hidden;
     transition: transform 0.3s ease, right 0.3s ease;
@@ -260,62 +261,41 @@
 }
 
 .sidebar-content {
-    background-color: white;
-    padding: 60px 7px;
+    background-color: #fdfdfd;
+    padding: 60px 53px;
     width: 100%;
     height: 100%;
     position: relative;
-}
-
-.sidebar-close {
-    color: #aaa;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    position: absolute;
-    top: 25px;
-    left: 40px;
-}
-
-.fas.fa-arrow-left {
-    color: #394162;
-}
-
-.sidebar-close:hover,
-.sidebar-close:focus {
-    color: black;
-    text-decoration: none;
+    text-align: left;
 }
 
 .sidebar.open {
     right: 0;
 }
 
-
 .sidebar-h4 {
-    margin: 10px 0px 30px;
+    margin: 20px 0 50px 90px;
     font-size: 18px;
 }
 
 .sidebar__label {
     display: block;
-    margin: 25px 0px 4px 70px;
+    margin: 25px 0px 4px 0px;
     text-align: left;
     font-size: 14px;
-    font-weight: bold;
 }
 
 .sidebar__input,
 .sidebar__input-disabled,
 .sidebar__select {
-    width: 57%;
+    width: 63%;
     height: 30px;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #cacaca;
     border-radius: 3px;
     padding: 0 12px 0 15px;
-    color: #535457;
+    color: #737375;
     background-color: #ffffff;
-    box-shadow: 1.3px 1.3px 2px #00000010;
+    box-shadow: 1.3px 1.3px 2px #0000000a;
 }
 
 .sidebar__input-disabled{
@@ -324,14 +304,14 @@
 }
 
 .sidebar__select {
-    width: 65%;
+    width: 72%;
 }
 
 .sidebar-submit {
     margin-top: 55px;
-    padding: 6px 35px;
-    background: linear-gradient(to bottom, #3a669e, #2d4e7a);
-    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.068);
+    padding: 6px 110px;
+    background: linear-gradient(to bottom, #5d6a7d, #3f5369);
+    box-shadow: 1.5px 1.5px 2px #aeb2cb, 0 1px 3px rgba(0, 0, 0, 0.029);
     color: #ffffff;
     border: none;
     border-radius: 3px;
@@ -375,8 +355,8 @@
 
 .active {
     padding: 5px 7px;
-    border: 1px solid #3258f0;
-    background-color: #376bef;
+    border: 1px solid #3e4976;
+    background-color: #435a93;
     color: #FFF;
     font-size: 14px;
 }
