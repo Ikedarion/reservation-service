@@ -10,16 +10,16 @@
 @section('content')
 <div class="restaurant__content">
     @if(empty($restaurant))
+    <p class="heading">
+        店舗詳細
+    </p>
+    <a id="close-form-btn" class="close">< 戻る</a>
     <div id="modal" class="restaurant__header">
         <div class="modal__inner">
             <button id="show-form-btn" class="create-button"><i class="fa-solid fa-plus"></i>&nbsp;店舗を作成する
             </button>
         </div>
     </div>
-    <p class="heading">
-        店舗詳細
-    </p>
-    <a id="close-form-btn" class="close">< 戻る</a>
     <div class="restaurant__group">
         <div id="create-form" class="restaurant__create-form {{ $errors->any() ? 'open' : '' }}">
             <form id="create-restaurant-form" class="create-form" action="{{ route('manager.store') }}" method="post" enctype="multipart/form-data">

@@ -463,13 +463,6 @@ body {
 
 
 
-
-
-
-
-
-
-
 .favorites {
     width: 100%;
     box-sizing: border-box;
@@ -499,6 +492,7 @@ body {
     position: relative;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    background-color: #ffffff;
 }
 
 .card__image {

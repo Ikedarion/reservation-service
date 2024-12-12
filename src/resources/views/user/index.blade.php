@@ -51,7 +51,7 @@
                                 @if ($i <=floor($restaurant->average_rating))
                                 <i class="las la-star star-icon gold"></i>
                                 @elseif ($i - $restaurant->average_rating < 1)
-                                    <i class="las la-star-half-alt gold"></i>
+                                    <i class="las la-star-half-alt star-icon gold"></i>
                                     @else
                                     <i class="las la-star star-icon" style="color: #bbb;"></i>
                                     @endif

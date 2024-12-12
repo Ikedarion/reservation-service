@@ -1,8 +1,5 @@
-
 html,
 body {
-    line-height: 1.6;
-    font-family: 'Roboto', sans-serif;
     color: #3d3d3d;
 }
 
@@ -156,7 +153,6 @@ body {
 
 .review-item:hover {
     transform: translateY(-4px) scale(1.03);
-    z-index: 10;
     height: auto;
     border: 1px solid #e9eaeb;
     background-color: #f6f8fa;
@@ -313,6 +309,7 @@ body {
     z-index: 10;
     display: none;
     opacity: 0;
+    overflow-y: auto;
 }
 
 .modal.open {

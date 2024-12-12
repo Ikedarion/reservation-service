@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addressInput = document.getElementById("address");
     const createForm = document.getElementById("create-form");
     const modal = document.getElementById("modal");
+    const close = document.getElementById("close-form-btn");
     const previewCard = document.getElementById("preview-card");
     const previewImageTag = document.getElementById("preview-image-tag");
 
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("show-form-btn").addEventListener("click", () => {
         modal.style.display = "none";
+        close.style.display = "block";
         createForm.style.display = "block";
         createForm.classList.add("open");
         previewCard.style.display = "block";
@@ -53,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         createForm.style.display = "none";
         modal.style.display = "block";
         createForm.classList.remove("open");
+        close.style.display = "none";
     });
 
     document.getElementById("close-preview-btn").addEventListener("click", () => {

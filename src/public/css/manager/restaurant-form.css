@@ -129,14 +129,16 @@ body {
     padding: 0px;
     color: #4b4f54;
     font-size: 17px;
-    border-bottom: 1px solid #4b4f54;
+    border-bottom: 1px solid #5f6265;
     margin-left: 50px;
+    display: none;
+    width: 50px;
 }
 
 .create-form {
     width: 100%;
     background-color: #ffffff;
-    padding: 50px 35px 80px;
+    padding: 50px 35px 90px;
     text-align: left;
     border-radius: 10px;
     position: relative;
@@ -165,31 +167,32 @@ body {
 .create-form__text,
 .create-form__textarea {
     padding: 0 5px;
-    background-color: #f9f9f9;
+    background-color: #fafafa;
     border: 1px solid #bebebe;
     border-radius: 3px;
+    color: #6a6b6d;
 }
 
 .create-form__input {
-    height: 25px;
-    width: 97%;
+    height: 30px;
+    width: 96.5%;
 }
 
 .create-form__select {
     height: 30px;
-    width: 97%;
+    width: 100%;
 }
 
 .create-form__text {
     height: 30px;
-    width: 97%;
+    width: 96.5%;
 }
 
 .create-form__textarea {
     height: 110px;
-    width: 97%;
+    width: 96.5%;
     margin-bottom: 0px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .create-form__submit {
@@ -229,9 +232,8 @@ body {
 
 .preview__content {
     width: 60%;
-    margin: 0;
-    padding: 0;
     text-align: left;
+    margin: 0;
 }
 
 .card__inner {
@@ -241,6 +243,8 @@ body {
     height: auto;
     text-align: left;
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .card__image {
