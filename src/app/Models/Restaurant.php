@@ -39,6 +39,11 @@ class Restaurant extends Model
         return $reviews->isNotEmpty() ? $reviews->avg('rating') : 0;
     }
 
+    public function getReviewCountAttribute()
+    {
+        return $this->reservations->whereNotNull('review')->count();
+    }
+
     public function scopeAreaSearch($query,$area)
     {
         if(!empty($area)) {

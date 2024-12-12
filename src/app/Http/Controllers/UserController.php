@@ -27,10 +27,6 @@ class UserController extends Controller
         $restaurants = Restaurant::with(['reservations.review'])->get();
         $userId = Auth::id();
 
-        foreach ($restaurants as $restaurant) {
-            $restaurant->review_count = $restaurant->reservations->whereNotNull('review')->count();
-        }
-
         $favorites = Restaurant::whereHas('favoriteUsers',function($query) use($userId) {
             $query->where('user_id',$userId);
         })->get();
@@ -87,7 +83,7 @@ class UserController extends Controller
     public function detail($id)
     {
         $restaurant = Restaurant::find($id);
-        $favorite = Favorite::where('restaurant_id',$id);
+        $favorite = Favorite::where('restaurant_id',$id)->first();
         $numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
         $reviews = $restaurant->reservations()
@@ -96,7 +92,7 @@ class UserController extends Controller
         $averageRating = $reviews->avg('rating');
 
         $ratingCounts = $reviews->groupBy('rating')->map(fn($group) => $group->count());
-        $totalReviews = $reviews->count();
+        $totalReviews = $reviews ? $reviews->count() : 0;
 
         $ratingCounts = collect([5, 4, 3, 2, 1])->mapWithKeys(function ($rating) use ($ratingCounts) {
             return [$rating => $ratingCounts->get($rating, 0)];
