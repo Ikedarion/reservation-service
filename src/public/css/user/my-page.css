@@ -257,7 +257,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(81, 81, 81, 0.901);
+    background-color: rgba(0, 0, 0, 0.422);
     z-index: 10;
     display: none;
     opacity: 0;
@@ -267,7 +267,7 @@ body {
 .modal.open {
     display: block;
     opacity: 1;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.434);
     overflow-y: auto;
 }
 
@@ -283,6 +283,14 @@ body {
     box-sizing: border-box;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    font-size: 25px;
+    color: #505050;
+    position: absolute;
+    top: -2%;
+    right: 4%;
 }
 
 .modal__form {
@@ -331,7 +339,7 @@ body {
 }
 
 .res-modal__button {
-    width: 220px;
+    width: 200px;
     border: none;
     padding: 12px 10px;
     color: white;
@@ -364,16 +372,32 @@ body {
     max-width: 550px;
     height: auto;
     background-color: rgb(255, 255, 255);
-    padding: 30px 13px 30px 9px;
+    padding: 25px 13px 30px 9px;
     box-sizing: border-box;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-
 }
 
 .review-modal__header {
     display: flex;
     align-items: center;
+}
+
+.review-modal__image {
+    margin: 0 10px 0 20px;
+    position: relative;
+    width: 150px;
+    height: 105px;
+    border-radius: 3px;
+    border-radius: 3px;
+}
+
+.review-modal__image img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 3px;
+    border-radius: 3px;
 }
 
 
@@ -641,8 +665,8 @@ body {
 
     .modal__inner {
         margin: 23% auto;
-        width: 90vw;
-        padding: 50px 40px 50px 37px;
+        width: 340px;
+        padding: 50px 50px 40px 47px;
     }
 
     .modal__form {
@@ -651,21 +675,21 @@ body {
     }
 
     .modal__calender {
-        width: 168px;
+        width: 69%;
         padding: 7px 3px;
         margin: 0px 0px 3px 0px;
     }
 
     .modal__input,
     .modal__select {
-        width: 176px;
+        width: 72%;
         padding: 6.5px 3px;
         margin: 0px 0px 3px 0px;
     }
 
     .modal__group {
         margin: 25px auto 0;
-        text-align: left;
+        text-align: right;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -680,13 +704,18 @@ body {
 
     .review-modal__inner {
         width: 320px;
-        margin: 23% auto;
+        margin: 5% auto;
         padding-left: 0px;
     }
 
     .res-modal__button {
-        width: 180px;
-        margin: 40px auto 0;
+        width: 150px;
+        margin: 45px auto 0;
+    }
+
+    .review-modal__image {
+        width: 130px;
+        height: 85px;
     }
 
 }

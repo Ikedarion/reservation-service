@@ -40,9 +40,9 @@
                     @if($filteredReservations && !$filteredReservations->isEmpty())
                     @foreach($filteredReservations as $reservation)
                     <div class="res__container">
-                        <form class="res__form" action="{{ route('delete', $reservation->id ) }}" method="post" @if($reservation->status === '予約確定')
+                        <form class="res__form" action="{{ route('delete', ['id' => $reservation->id]) }}" method="post" @if($reservation->status === '予約確定')
                             onsubmit="return confirmDelete('この予約をキャンセルしてよろしいですか？')"
-                            @endif>
+                            @elseif($reservation->status === '来店済み') onsubmit="return confirmDelete('この予約履歴はマイページから削除されます。')" @endif>
                             @csrf
                             @method('delete')
                             <button class="res__form-submit">
@@ -60,12 +60,12 @@
                                 <a class="modal__button" href="#reviewModal{{$reservation->id}}">
                                     レビューを書く
                                 </a>
-                                @include('components.review-form-modal',['reservation' => $reservation,'restaurant' => $restaurant])
+                                @include('components.review-form-modal',['reservation' => $reservation])
                                 @elseif($reservation->status == '予約確定')
                                 <a class="modal__button" href="#modal{{$reservation->id}}">
                                     <i class="fa-solid fa-pencil"></i>&nbsp;変更する
                                 </a>
-                                @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers,'restaurant' => $restaurant])
+                                @include('components.reservation-edit-modal',['reservation' => $reservation, 'numbers' => $numbers])
                                 @endif
                             </div>
                         </div>
@@ -176,10 +176,20 @@
         });
 
         const Modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.modal-close');
 
         Modals.forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
+                    modal.classList.remove('open');
+                }
+            });
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const modal = button.closest('.modal');
+                if (modal) {
                     modal.classList.remove('open');
                 }
             });

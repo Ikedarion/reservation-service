@@ -146,9 +146,7 @@ class UserController extends Controller
             }
         )->get();
 
-        $restaurant = Restaurant::where('user_id',$userId)->first();
-
-        return view('user/my_page', compact('restaurants', 'filteredReservations', 'numbers','restaurant'));
+        return view('user/my_page', compact('restaurants', 'filteredReservations', 'numbers'));
     }
 
     public function delete($id)
@@ -194,31 +192,30 @@ class UserController extends Controller
 
     public function storeReview(Request $request,$id)
     {
-        $request->validate([
-            'rating' => 'required',
-            'comment' => 'nullable|string|max:255',
-            'title' => 'required|string|max:30',
-            'nickname' => 'nullable|string|max:10'
+        $validatedData = $request->validate([
+            'rating_' . $id => 'required',
+            'comment_' . $id => 'nullable|string|max:255',
+            'title_' . $id => 'required|string|max:30',
+            'nickname_' . $id => 'nullable|string|max:10'
         ], [
-            'rating.required' => '評価は必須です。',
-            'comment.max' => '本文は255文字以内で入力してください。',
-            'comment.string' => '本文は文字列で入力してください。',
-            'title.required' => 'タイトルを入力してください。',
-            'title.string' => 'タイトルは文字列で入力してください。',
-            'title.max' => 'タイトルは30字以内で入力してください。',
-            'nickname.string' => 'ニックネームは文字列で入力してください。',
-            'nickname.max' => 'ニックネームは10字以内で入力してください。',
+            'rating_' . $id . '.required' => '評価は必須です。',
+            'comment_' . $id . '.max' => '本文は255文字以内で入力してください。',
+            'comment_' . $id . '.string' => '本文は文字列で入力してください。',
+            'title_' . $id . '.required' => 'タイトルを入力してください。',
+            'title_' . $id . '.string' => 'タイトルは文字列で入力してください。',
+            'title_' . $id . '.max' => 'タイトルは30字以内で入力してください。',
+            'nickname_' . $id . '.string' => 'ニックネームは文字列で入力してください。',
+            'nickname_' . $id . '.max' => 'ニックネームは10字以内で入力してください。',
         ]);
 
         $userId = Auth::id();
-        $input = $request->only('rating','comment','title','nickname');
         Review::create([
             'user_id' => $userId,
             'reservation_id' => $id,
-            'rating' => $input['rating'],
-            'comment' => $input['comment'] ?? null,
-            'title' => $input['title'],
-            'nickname' => $input['nickname'] ?? null,
+            'rating' => $validatedData['rating_' . $id],
+            'comment' => $validatedData['comment_' . $id] ?? null,
+            'title' => $validatedData['title_' . $id],
+            'nickname' => $validatedData['nickname_' . $id] ?? null,
         ]);
 
         $reservation = Reservation::find($id);

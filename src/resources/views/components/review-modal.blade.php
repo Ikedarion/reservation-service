@@ -27,7 +27,7 @@
                             <span class="star-rating">★{{ $rating }}</span>
                         </div>
                         <div class="rating-bar">
-                            <div class="bar" style="--bar-width: {{ ($totalReviews > 0) ? (int)(($count / $totalReviews) * 100) : 0 }}%;"></div>
+                            <div class="bar" style="--bar-width: {{ ($totalReviews > 0) ? (($count / $totalReviews) * 100) : 0 }}%;"></div>
                         </div>
                         <p class="percentage">{{ $count }}件</p>
                     </div>

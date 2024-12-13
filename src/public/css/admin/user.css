@@ -141,7 +141,7 @@
 .admin-form__submit {
     background: linear-gradient(to bottom, #2b5ba0, #1c4480);
     border: none;
-    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.072);
     color: #ffffff;
     padding: 7px 13px 8px;
     font-size: 11px;
@@ -153,7 +153,7 @@
 
 .admin-form__submit:hover {
     background: linear-gradient(to top, #2f5fa3, #1c4480);
-    box-shadow: 2px 2px 8px #aeb2cb, 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 8px #aeb2cb, 0 4px 10px rgba(0, 0, 0, 0.136);
 }
 
 .tab-link {
@@ -185,7 +185,7 @@
     padding: 14px 22px;
     text-align: center;
     white-space: nowrap;
-    background-color: #f2f3f4;
+    background-color: #f9fafb;
     font-size: 13px;
 }
 
@@ -314,15 +314,14 @@
     bottom: 10%;
     right: 159px;
     padding: 7px 15px;
-    width: 80px;
-    background-color: rgb(47, 95, 163);
+    width: 100px;
     border: none;
     color: #ffffff;
     border-radius: 3px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     background: linear-gradient(to bottom, #3d86da, #2f5fa3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: bold;
+    box-shadow: 1.5px 1.5px 4px #aeb2cb, 0 2px 6px rgba(0, 0, 0, 0.071);
 }
 
 .modal__delete-submit {

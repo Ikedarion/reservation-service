@@ -5,7 +5,7 @@
                 @csrf
                 @method('PATCH')
                 <div class="modal__group">
-                    <label class="modal__label" for="restaurant_name">Name</label>
+                    <label class="modal__label" for="restaurant_name">Shop</label>
                     <input class="modal__input" type="type" name="restaurant_name" value="{{ $reservation->restaurant->name }}" id="restaurant_name" disabled>
                 </div>
                 <div class="modal__group">
