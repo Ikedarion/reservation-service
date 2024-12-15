@@ -55,6 +55,7 @@
    AWS_SECRET_ACCESS_KEY=your-secret-key
    AWS_DEFAULT_REGION=us-west-2
    AWS_BUCKET_NAME=your-s3-bucket-name
+   AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
   ```
 - 5.アプリケーションキーの作成<br>
   ```
@@ -111,6 +112,7 @@
  AWS_SECRET_ACCESS_KEY=your-secret-key
  AWS_DEFAULT_REGION=us-west-2
  AWS_BUCKET_NAME=your-s3-bucket-name
+ AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
 
  DB_CONNECTION=mysql
  DB_HOST=your-rds-endpoint.amazonaws.com  # RDSインスタンスのエンドポイント
@@ -118,7 +120,6 @@
  DB_DATABASE=your-db-name  # データベース名
  DB_USERNAME=your-db-username  # RDSインスタンス作成時に指定したユーザー名
  DB_PASSWORD=your-db-password  # RDSインスタンス作成時に指定したパスワード
-
 ```
 4. Stripeの設定
 ```
@@ -137,16 +138,21 @@
 ```
  php artisan migrate
 ```
-8. タスクスケジューラーの設定
+8. シーディングの実行（開発用の初期データ)<br>
+```
+ php artisan db:seed --class=UserSeeder
+ php artisan db:seed --class=RestaurantSeeder
+```
+9. タスクスケジューラーの設定
 ```
  php artisan schedule:run
  * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
 ```
-9. コンテナのセットアップ
+10. コンテナのセットアップ
 ```
  docker-compose up -d --build
 ```
-10. アプリケーションの起動
+11. アプリケーションの起動
 ```
  php artisan serve
 ```
