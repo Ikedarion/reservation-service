@@ -24,7 +24,14 @@ AWS
 ```
 
 ## 環境構築
-### laravelの環境構築
+### 必要なツール
+- Docker
+- Docker Compose
+- PHP (バージョン 8.2 以上)
+- MySQL (ローカルの場合)
+- AWS アカウント（AWS S3, RDS, EC2 を使用）
+
+### ローカル環境のセットアップ
 - 1.docker-compose exec php bash
 - 2.composer install
 - 3.「.env.example」ファイルを 「.env」ファイルに命名を変更。<br>
@@ -37,6 +44,11 @@ AWS
    DB_DATABASE=laravel_db
    DB_USERNAME=laravel_user
    DB_PASSWORD=laravel_pass
+
+   AWS_ACCESS_KEY_ID=your-access-key
+   AWS_SECRET_ACCESS_KEY=your-secret-key
+   AWS_DEFAULT_REGION=us-west-2
+   AWS_BUCKET_NAME=your-s3-bucket-name
   ```
 - 5.アプリケーションキーの作成<br>
   ```
@@ -46,28 +58,33 @@ AWS
   ```
    php artisan serve
   ```
-- 7.シーディングの実行<br>
+- 7.シーディングの実行（開発用の初期データ)<br>
   ```
    php artisan db:seed --class=UserSeeder
    php artisan db:seed --class=RestaurantSeeder
   ```
-**その他**<br>
+- 8.Stripe設定
+  ```
+   STRIPE_KEY=your-public-key-here
+   STRIPE_SECRET_KEY=your-secret-key-here
+  ```
+
+- 9.タスクスケジューラーの設定
+  ```
+   php artisan schedule:run
+   * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+  ```
+- 10.Dockerコンテナのセットアップ
+  ```
+   docker-compose up -d --build
+  ```
+#### その他
 例) アカウントの種類(テストユーザー)<br>
-- メールアドレス : test1@example.com
-- パスワード : password1
-- 役割 : 管理者
+- ユーザー メールアドレス: `user@example.com` パスワード: `Password1`
+- 店舗代表者 メールアドレス: `test3@example.com` パスワード: `Password1`
+- 管理者 メールアドレス: `admin@example.com` パスワード: `Password1`
 
-### AWS環境の環境構築
-必要な環境
-- Docker
-- docker-compose
-- PHP, MySQL
-  
-以下のAWSサービスを利用
-- Amazon S3（ストレージ）
-- Amazon RDS（MySQLデータベース）
-- Amazon EC2（バックエンドサーバー）
-
+### AWS環境のセットアップ
 1. EC2インスタンスへのSSH接続
 ```
  ssh -i "your-key.pem" ubuntu@your-ec2-public-ip
@@ -76,22 +93,28 @@ AWS
 2. Gitリポジトリのクローン
 ```
  git clone https://github.com/Ikedarion/reservation-service.git
- cd your-project
+ cd reservation-service
 ```
 3. .envファイルの作成
-cp .env.example .env
+ローカル環境で実行する場合
+cp .env.local .env
+本番環境で実行する場合
+cp .env.production .env
+
 .envファイルにAWSの設定やデータベースの設定を記述します。
 ```
  AWS_ACCESS_KEY_ID=your-access-key
  AWS_SECRET_ACCESS_KEY=your-secret-key
  AWS_DEFAULT_REGION=us-west-2
  AWS_BUCKET_NAME=your-s3-bucket-name
+
  DB_CONNECTION=mysql
- DB_HOST=your-db-host
- DB_PORT=3306
- DB_DATABASE=your-db-name
- DB_USERNAME=your-db-username
- DB_PASSWORD=your-db-password
+ DB_HOST=your-rds-endpoint.amazonaws.com  # RDSインスタンスのエンドポイント
+ DB_PORT=3306  # 通常は3306
+ DB_DATABASE=your-db-name  # データベース名
+ DB_USERNAME=your-db-username  # RDSインスタンス作成時に指定したユーザー名
+ DB_PASSWORD=your-db-password  # RDSインスタンス作成時に指定したパスワード
+
 ```
 4. Stripeの設定
 ```
@@ -123,7 +146,8 @@ cp .env.example .env
 ```
  php artisan serve
 ```
-#### docker-compose.yml
+#### docker-compose.yml　
+AWS例
 ```
 services:
   nginx:
