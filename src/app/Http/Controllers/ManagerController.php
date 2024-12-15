@@ -137,10 +137,11 @@ class ManagerController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 's3');
-            $imageUrl = 'https://' . env('AWS_BUCKET') . '.s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . $imagePath;
-
+            $imageUrl = env('AWS_URL') . '/' . $imagePath;
+            $input['image'] = $imageUrl;
         } else {
             $imageUrl = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
+            $input['image'] = $imageUrl;
         }
 
         Restaurant::create([
@@ -149,7 +150,7 @@ class ManagerController extends Controller
             'genre' => $input['genre'],
             'address' => $input['address'],
             'description' => $input['description'],
-            'image' => $imageUrl,
+            'image' => $input['image'],
         ]);
 
         return redirect()->route('manager.detail')->with('success','店舗情報の登録が完了しました。');
@@ -163,13 +164,14 @@ class ManagerController extends Controller
 
         if($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images','s3');
-            $imageUrl = 'https://' . env('AWS_BUCKET') . '.s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . $imagePath;
+            $imageUrl = env('AWS_URL') . '/' . $imagePath;
             $input['image'] = $imageUrl;
             if($restaurant->image) {
                 Storage::disk('s3')->delete(str_replace(env('AWS_URL') . '/', '', $restaurant->image));
             }
         } else {
             $imageUrl = "https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg";
+            $input['image'] = $imageUrl;
         }
 
         $restaurant->update($input);
