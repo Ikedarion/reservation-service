@@ -1,5 +1,5 @@
 # Rese(飲食店予約サービス)
-画像
+<img width="450" alt="0940FE97-0F2C-4BEB-AD75-EF2C09D9104A" src="https://github.com/user-attachments/assets/2f4088a2-ecb1-406d-996a-7c41c4ed177e" />
 
 ## 作成した目的
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい。
