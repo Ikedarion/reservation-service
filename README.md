@@ -20,7 +20,7 @@ AWS
 
 ## リポジトリ
 ```
- git clone https://github.com/yourusername/your-project.git
+ https://github.com/Ikedarion/reservation-service.git
 ```
 
 ## 環境構築
@@ -75,7 +75,7 @@ AWS
 
 2. Gitリポジトリのクローン
 ```
- git clone https://github.com/yourusername/your-project.git
+ git clone https://github.com/Ikedarion/reservation-service.git
  cd your-project
 ```
 3. .envファイルの作成
