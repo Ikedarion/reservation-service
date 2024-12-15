@@ -5,16 +5,22 @@
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい。
 
 ## 機能一覧
-- ログイン機能　・予約、決済機能
-- お気に入り機能  ・レビュー機能
-- 予約編集機能   ・店舗情報作成、編集機能
-- ユーザー情報作成、編集機能  ・メール送信機能
+<ul>
+  <li>ログイン機能</li>
+  <li>予約、決済機能</li>
+  <li>お気に入り機能</li>
+  <li>レビュー機能</li>
+  <li>予約編集、削除機能</li>
+  <li>店舗情報作成、編集機能</li>
+  <li>ユーザー情報作成、編集機能</li>
+  <li>メール送信機能</li>
+</ul>
 
 ## アプリケーションURL
 デプロイのURLを貼り付けるログインなどがあれば注意事項など<br>
 - 開発環境 : http://localhost/<br>
 - phpmyadmin : http://localhost:8080/<br>
-AWS
+##### AWS
 - 開発環境 : http://localhost/<br>
 - 本番環境 : http://15.152.239.99/
 
@@ -95,13 +101,11 @@ AWS
  git clone https://github.com/Ikedarion/reservation-service.git
  cd reservation-service
 ```
-3. .envファイルの作成
-ローカル環境で実行する場合
-cp .env.local .env
-本番環境で実行する場合
-cp .env.production .env
+3. .envファイルの作成<br>
+ローカル環境 cp .env.local .env<br>
+本番環境 cp .env.production .env
 
-.envファイルにAWSの設定やデータベースの設定を記述します。
+.envに以下の環境変数を追加
 ```
  AWS_ACCESS_KEY_ID=your-access-key
  AWS_SECRET_ACCESS_KEY=your-secret-key
