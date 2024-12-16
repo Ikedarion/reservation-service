@@ -21,8 +21,8 @@
 - 開発環境 : http://localhost/<br>
 - phpmyadmin : http://localhost:8080/<br>
 ##### AWS
-- 開発環境 : http://localhost/<br>
-- 本番環境 : http://15.152.239.99/
+- 開発環境 : http://<br>
+- 本番環境 : http://
 
 ## リポジトリ
 ```
@@ -53,9 +53,9 @@
   
    AWS_ACCESS_KEY_ID=your-access-key
    AWS_SECRET_ACCESS_KEY=your-secret-key
-   AWS_DEFAULT_REGION=us-west-2
+   AWS_DEFAULT_REGION=ap-northeast-1 # 東京リージョンの場合
    AWS_BUCKET_NAME=your-s3-bucket-name
-   AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
+   AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com #画像保存時に使用します
 
    MAIL_MAILER=smtp
    MAIL_HOST=smtp.mailtrap.io
@@ -74,7 +74,7 @@
   ```
    php artisan serve
   ```
-- 7.シーディングの実行（開発用の初期データ)<br>
+- 7.シーディングの実行（開発用のダミーデータ)<br>
   ```
    php artisan db:seed --class=UserSeeder
    php artisan db:seed --class=RestaurantSeeder
@@ -84,7 +84,6 @@
    STRIPE_KEY=your-public-key-here
    STRIPE_SECRET_KEY=your-secret-key-here
   ```
-
 - 9.タスクスケジューラーの設定
   ```
    php artisan schedule:run
@@ -103,7 +102,7 @@
 ### AWS環境のセットアップ
 1. EC2インスタンスへのSSH接続
 ```
- ssh -i "your-key.pem" ubuntu@your-ec2-public-ip
+ ssh -i "your-key.pem" ec2-user@your-ec2-public-ip
 ```
 
 2. Gitリポジトリのクローン
@@ -112,16 +111,14 @@
  cd reservation-service
 ```
 3. .envファイルの作成<br>
-ローカル環境 cp .env.local .env<br>
-本番環境 cp .env.production .env
-
+cp .env.example .env<br>
 .envに以下の環境変数を追加
 ```
  AWS_ACCESS_KEY_ID=your-access-key
  AWS_SECRET_ACCESS_KEY=your-secret-key
- AWS_DEFAULT_REGION=us-west-2
+ AWS_DEFAULT_REGION=ap-northeast-1 # 東京リージョンの場合
  AWS_BUCKET_NAME=your-s3-bucket-name
- AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
+ AWS_URL=https://my-awesome-app-bucket.s3.ap-northeast-1.amazonaws.com #画像保存時に使用します
 
  DB_CONNECTION=mysql
  DB_HOST=your-rds-endpoint.amazonaws.com 
@@ -129,6 +126,12 @@
  DB_DATABASE=your-db-name
  DB_USERNAME=your-db-username
  DB_PASSWORD=your-db-password
+
+ 本番環境の場合
+ APP_ENV=production                             # 本番環境
+ APP_DEBUG=false                                # 本番環境ではデバッグを無効
+ APP_URL=https://your-production-app-url.com    # アプリケーションのURL (本番環境用)
+ LOG_LEVEL=error
 ```
 4. Stripeの設定
 ```
