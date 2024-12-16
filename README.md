@@ -169,7 +169,7 @@ cp .env.example .env<br>
  php artisan serve
 ```
 #### docker-compose.yml　
-AWS例
+AWS
 ```
 services:
   nginx:
@@ -197,6 +197,11 @@ services:
 networks:
   mynetwork:
     driver: bridge
+```
+#### default.conf
+```
+server_name localhost; # 自分の開発環境のドメイン名やIPアドレスに変更
+
 ```
 
 ## テーブル設計
