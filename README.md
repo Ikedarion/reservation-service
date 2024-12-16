@@ -50,12 +50,21 @@
    DB_DATABASE=laravel_db
    DB_USERNAME=laravel_user
    DB_PASSWORD=laravel_pass
-
+  
    AWS_ACCESS_KEY_ID=your-access-key
    AWS_SECRET_ACCESS_KEY=your-secret-key
    AWS_DEFAULT_REGION=us-west-2
    AWS_BUCKET_NAME=your-s3-bucket-name
    AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
+
+   MAIL_MAILER=smtp
+   MAIL_HOST=smtp.mailtrap.io
+   MAIL_PORT=2525
+   MAIL_USERNAME=your-mailtrap-username
+   MAIL_PASSWORD=your-mailtrap-password
+   MAIL_ENCRYPTION=null
+   MAIL_FROM_ADDRESS=no-reply@example.com
+   MAIL_FROM_NAME="${APP_NAME}"
   ```
 - 5.アプリケーションキーの作成<br>
   ```
