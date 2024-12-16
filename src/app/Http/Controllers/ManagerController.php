@@ -34,7 +34,7 @@ class ManagerController extends Controller
 
         $reservations = Reservation::whereHas('restaurant',function($query) use($userId) {
             $query->where('user_id',$userId);
-        })->where('date', '>=' , $today)->paginate(15);
+        })->where('date', '>=' , $today)->orderBy('date', 'asc')->paginate(15);
         return view('/manager/reservation',compact('reservations'));
     }
 
@@ -58,6 +58,7 @@ class ManagerController extends Controller
         ->NumberSearch($number)
         ->StatusSearch($status)
         ->KeywordSearch($keyword)
+        ->orderBy('date', 'asc')
         ->paginate(15)
         ->appends($request->query());
 
