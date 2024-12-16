@@ -33,8 +33,8 @@
 ### 必要なツール
 - Docker
 - Docker Compose
-- PHP (バージョン 8.2 以上)
-- MySQL (ローカルの場合)
+- PHP
+- MySQL
 - AWS アカウント（AWS S3, RDS, EC2 を使用）
 
 ### ローカル環境のセットアップ
