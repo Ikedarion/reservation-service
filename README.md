@@ -115,11 +115,11 @@
  AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com
 
  DB_CONNECTION=mysql
- DB_HOST=your-rds-endpoint.amazonaws.com  # RDSインスタンスのエンドポイント
- DB_PORT=3306  # 通常は3306
- DB_DATABASE=your-db-name  # データベース名
- DB_USERNAME=your-db-username  # RDSインスタンス作成時に指定したユーザー名
- DB_PASSWORD=your-db-password  # RDSインスタンス作成時に指定したパスワード
+ DB_HOST=your-rds-endpoint.amazonaws.com 
+ DB_PORT=3306
+ DB_DATABASE=your-db-name
+ DB_USERNAME=your-db-username
+ DB_PASSWORD=your-db-password
 ```
 4. Stripeの設定
 ```
