@@ -49,6 +49,8 @@ body {
 
 .filter-form {
     width: 25%;
+    max-width: 240px;
+    min-width: 220px;
     align-items: center;
     margin: 0px auto;
     background-color: #fefefe;
@@ -153,6 +155,7 @@ body {
 
 .review-item:hover {
     transform: translateY(-4px) scale(1.03);
+    width: 100%;
     height: auto;
     border: 1px solid #e9eaeb;
     background-color: #f6f8fa;
