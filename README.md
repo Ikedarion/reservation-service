@@ -208,7 +208,7 @@ server_name localhost; # 自分の開発環境のドメイン名やIPアドレ�
 <img src="https://github.com/user-attachments/assets/fd9eea1e-0418-4df8-82c8-744c74d51344" width="350" height="500"/>
 
 ## ER図
-<img width="350" height="400" alt="0AE484EB-DB07-4476-AB62-04A8A9087E91" src="https://github.com/user-attachments/assets/19fadd94-dc82-464d-9182-1c335f5308c7" />
+<img width="400" height="400" src="https://github.com/user-attachments/assets/7879a39c-7ca1-44c4-978a-4b289060573d" />
 
 ## 使用技術(実行環境)
 - PHP8.2.25
