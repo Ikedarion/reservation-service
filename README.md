@@ -24,8 +24,8 @@
 - 開発環境 : http://localhost/<br>
 - phpmyadmin : http://localhost:8080/<br>
 ##### AWS
-- 開発環境 : http://<br>
-- 本番環境 : http://
+- 開発環境 : http://35.78.187.98/<br>
+- 本番環境 : http://18.183.31.47/
 
 ## リポジトリ
 ```
