@@ -41,7 +41,7 @@
                     @foreach($filteredReservations as $reservation)
                     <div class="res__container">
                         <form class="res__form" action="{{ route('delete', ['id' => $reservation->id]) }}" method="post" @if($reservation->status === '予約確定')
-                            onsubmit="return confirmDelete('この予約をキャンセルしてよろしいですか？')"
+                            onsubmit="return confirmDelete('この予約はキャンセルされます。よろしいですか？')"
                             @elseif($reservation->status === '来店済み') onsubmit="return confirmDelete('この予約履歴はマイページから削除されます。')" @endif>
                             @csrf
                             @method('delete')
