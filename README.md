@@ -58,7 +58,7 @@
    AWS_SECRET_ACCESS_KEY=your-secret-key
    AWS_DEFAULT_REGION=ap-northeast-1 # 東京リージョンの場合
    AWS_BUCKET_NAME=your-s3-bucket-name
-   AWS_URL=https://your-s3-bucket-name.s3.us-west-2.amazonaws.com #画像保存時に使用します
+   AWS_URL=https://your-s3-bucket-name.s3.ap-northeast-1.amazonaws.com #画像保存時に使用します
 
    MAIL_MAILER=smtp
    MAIL_HOST=smtp.mailtrap.io
@@ -121,7 +121,7 @@ cp .env.example .env<br>
  AWS_SECRET_ACCESS_KEY=your-secret-key
  AWS_DEFAULT_REGION=ap-northeast-1 # 東京リージョンの場合
  AWS_BUCKET_NAME=your-s3-bucket-name
- AWS_URL=https://my-awesome-app-bucket.s3.ap-northeast-1.amazonaws.com #画像保存時に使用します
+ AWS_URL=https://your-s3-bucket-name.s3.ap-northeast-1.amazonaws.com #画像保存時に使用します
 
  DB_CONNECTION=mysql
  DB_HOST=your-rds-endpoint.amazonaws.com 
@@ -153,7 +153,7 @@ cp .env.example .env<br>
 ```
  php artisan migrate
 ```
-8. シーディングの実行（開発用の初期データ)<br>
+8. シーディングの実行（開発用のダミーデータ)<br>
 ```
  php artisan db:seed --class=UserSeeder
  php artisan db:seed --class=RestaurantSeeder
