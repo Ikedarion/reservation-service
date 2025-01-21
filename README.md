@@ -71,11 +71,11 @@
   ```
 - 5.アプリケーションキーの作成<br>
   ```
-   php artisan migrate
+   php artisan key:generate
   ```
 - 6.マイグレーションの実行<br>
   ```
-   php artisan serve
+   php artisan migrate
   ```
 - 7.シーディングの実行（開発用のダミーデータ)<br>
   ```
