@@ -47,13 +47,13 @@
                                     @if ($i <=floor($averageRating))
                                     <i class="las la-star gold star"></i>
                                     @elseif ($i - $averageRating < 1)
-                                        <i class="las la-star-half-alt gold star"></i>
-                                        @else
-                                        <i class="las la-star gray star"></i>
-                                        @endif
-                                        @endfor
-                                        <span class="average">{{ number_format($averageRating, 1) }}</span>
-                                        <span class="count">({{ $reviews->count()}}件)</span>
+                                    <i class="las la-star-half-alt gold star"></i>
+                                    @else
+                                    <i class="las la-star gray star"></i>
+                                    @endif
+                                @endfor
+                                <span class="average">{{ number_format($averageRating, 1) }}</span>
+                                <span class="count">({{ $reviews->count()}}件)</span>
                             </a>
                             @endif
                         </div>
@@ -101,6 +101,7 @@
                                 <td class="table__item" id="number"></td>
                             </tr>
                         </table>
+                        <div id="stripe-container" data-stripe-key="{{ config('services.stripe.public') }}"></div>
                         <input class="res__button" type="submit" value="予約する"></input>
                     </form>
                 </div>

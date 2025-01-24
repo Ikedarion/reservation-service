@@ -1,4 +1,5 @@
-var stripe = Stripe('pk_test_51QLztUF8XhjTFbz9sWhKEp3DJMbsmB6mqasfHsv5BLjTKP5nrDcrZ4oYx9QAutdhV2r9Eoa1qNtmm0L4oQ8Vv4OQ00XkugHsgN');
+var stripeKey = document.getElementById('stripe-container').getAttribute('data-stripe-key');
+var stripe = Stripe(stripeKey);
 
 var form = document.querySelector('.res__form');
 
