@@ -22,7 +22,10 @@
 
 ## 環境構築
 ### ローカル環境のセットアップ
-- 1.docker-compose exec php bash
+- 1.PHPコンテナへ入る
+  '''
+   docker-compose exec php bash
+  ```
 - 2.composer install
 - 3.「.env.example」ファイルを 「.env」ファイルに命名を変更。<br>
     または、新しく.envファイルを作成
@@ -61,7 +64,7 @@
 - 8.Stripe設定
   ```
    STRIPE_KEY=your-public-key-here
-   STRIPE_SECRET_KEY=your-secret-key-here
+   STRIPE_SECRET=your-secret-key-here
   ```
 - 9.タスクスケジューラーの設定
   ```
