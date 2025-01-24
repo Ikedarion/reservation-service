@@ -21,13 +21,6 @@
 - phpmyadmin : http://localhost:8080/<br>
 
 ## 環境構築
-### 必要なツール
-- Docker
-- Docker Compose
-- PHP
-- MySQL
-- AWS アカウント（AWS S3, RDS, EC2 を使用）
-
 ### ローカル環境のセットアップ
 - 1.docker-compose exec php bash
 - 2.composer install
