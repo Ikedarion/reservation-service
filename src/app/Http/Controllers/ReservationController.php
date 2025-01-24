@@ -50,7 +50,7 @@ class ReservationController extends Controller
 
 
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+            Stripe::setApiKey(env('STRIPE_SECRET'));
 
             $restaurantId = $request->input('restaurant_id');
             $date = Carbon::parse($request->date)->format('Y-m-d');
