@@ -34,13 +34,8 @@
    DB_DATABASE=laravel_db
    DB_USERNAME=laravel_user
    DB_PASSWORD=laravel_pass
-  
-   AWS_ACCESS_KEY_ID=your-access-key
-   AWS_SECRET_ACCESS_KEY=your-secret-key
-   AWS_DEFAULT_REGION=ap-northeast-1 # 東京リージョンの場合
-   AWS_BUCKET_NAME=your-s3-bucket-name
-   AWS_URL=https://your-s3-bucket-name.s3.ap-northeast-1.amazonaws.com #画像保存時に使用します
 
+   #mailtrapを使用する場合
    MAIL_MAILER=smtp
    MAIL_HOST=smtp.mailtrap.io
    MAIL_PORT=2525
