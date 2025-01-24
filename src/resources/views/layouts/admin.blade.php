@@ -34,6 +34,12 @@
             @if(auth()->user()->role === '管理者')
             <div class="menu__content">
                 <a class="menu__link" href="/">ホーム</a>
+                @if (auth()->user()->role === '管理者' && auth()->user()->restaurant)
+                <a class="menu__link" href="{{ route('manager.index') }}">予約一覧</a>
+                <a class="menu__link" href="{{ route('manager.showReviews') }}">レビュー管理画面</a>
+                <a class="menu__link" href="{{ route('manager.detail') }}">店舗詳細</a>
+                <a class="menu__link" href="{{ route('reservation.scan') }}">QRCode照合画面</a>
+                @endif
                 <a class="menu__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
                 <a class="menu__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
                 <form class="menu__form" action="{{ route('logout') }}" method="POST">

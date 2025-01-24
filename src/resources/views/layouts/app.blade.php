@@ -13,7 +13,6 @@
 <body>
     <header class="header">
         <div class="app">
-
             @if(auth()->check())
             @if(auth()->user()->role === '管理者')
             <div class="menu">
@@ -28,6 +27,12 @@
                     <div class="admin-item">
                         <h2 class="h2">Rese</h2>
                         <a class="admin__link" href="/">ホーム</a>
+                        @if (auth()->user()->role === '管理者' && auth()->user()->restaurant)
+                        <a class="manager__link" href="{{ route('manager.index') }}">予約一覧</a>
+                        <a class="manager__link" href="{{ route('manager.showReviews') }}">レビュー管理画面</a>
+                        <a class="manager__link" href="{{ route('manager.detail') }}">店舗詳細</a>
+                        <a class="manager__link" href="{{ route('reservation.scan') }}">QRCode照合画面</a>
+                        @endif
                         <a class="admin__link" href="{{ route('admin.index') }}">ユーザー一覧</a>
                         <a class="admin__link" href="{{ route('admin.showSendMailForm') }}">メール送信フォーム</a>
                         <form class="admin-form" action="{{ route('logout') }}" method="POST">
