@@ -23,7 +23,7 @@
 ## 環境構築
 ### ローカル環境のセットアップ
 - 1.PHPコンテナへ入る
-  '''
+  ```
    docker-compose exec php bash
   ```
 - 2.composer install
